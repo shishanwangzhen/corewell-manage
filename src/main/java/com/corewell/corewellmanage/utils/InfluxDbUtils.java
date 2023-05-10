@@ -1,3 +1,4 @@
+/*
 package com.corewell.corewellmanage.utils;
 
 import lombok.Data;
@@ -7,13 +8,15 @@ import org.influxdb.dto.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+*/
 /**
  * Created with IntelliJ IDEA.
  *
  * @Author: wangzhen
  * @Date: 2022/12/19/17:08
  * @Description:
- */
+ *//*
+
 
 
 @Data
@@ -41,11 +44,13 @@ public class InfluxDbUtils {
         this.influxDB = influxDbBuild();
     }
 
-    /**
+    */
+/**
      * 连接数据库 ，若不存在则创建
      *
      * @return influxDb实例
-     */
+     *//*
+
     private InfluxDB influxDbBuild() {
         if (influxDB == null) {
             influxDB = InfluxDBFactory.connect(url, user, password);
@@ -62,12 +67,15 @@ public class InfluxDbUtils {
         return influxDB;
     }
 
-    /****
+    */
+/****
      *  创建数据库
      * @param database
-     */
+     *//*
+
     private void createDB(String database) {
         influxDB.query(new Query("CREATE DATABASE " + database));
     }
 }
 
+*/

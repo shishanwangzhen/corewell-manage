@@ -1,3 +1,4 @@
+/*
 package com.corewell.corewellmanage.utils;
 
 
@@ -14,13 +15,15 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+*/
 /**
  * Created with IntelliJ IDEA.
  *
  * @Author: wangzhen
  * @Date: 2023/01/17/16:21
  * @Description:
- */
+ *//*
+
 @Component
 public class VideoUtil{
 
@@ -46,11 +49,13 @@ public class VideoUtil{
         this.imagePath = imagePath;
     }
 
-    /**
+    */
+/**
      * frame 转图片流
      * @param frame
      * @return
-     */
+     *//*
+
     public static BufferedImage FrameToBufferedImage(Frame frame) {
         //创建BufferedImage对象
         Java2DFrameConverter converter = new Java2DFrameConverter();
@@ -59,9 +64,11 @@ public class VideoUtil{
     }
 
 
-    /**
+    */
+/**
      * 执行视频流抓取
-     */
+     *//*
+
     public Map<String,Object> run(String uuid,boolean screenshot) {
         Map<String,Object> resultMap = new HashMap<>(3);
         Map<String,Object> map = new LinkedHashMap<>(5);
@@ -153,13 +160,15 @@ public class VideoUtil{
 
 
 
-    /**
+    */
+/**
      * 测试：
      * 1、在D盘中新建一个test文件夹，test中再分成video和img，在video下存入一个视频，并命名为test
      * D:/test/video     D:/test/img
      *
      * @param args
-     */
+     *//*
+
     public static void main(String[] args) {
         //getVideoStream();
         String result = getStreamScreenshot("D://files/video/F28688868_20210317093106.flv","D://files/img/","rtmp://58.200.131.2:1935/livetv/hunantv");
@@ -168,27 +177,33 @@ public class VideoUtil{
 
 
 
-    /**
+    */
+/**
      * 获取视频流
      * @param filePath
      * @param streamURL
-     */
+     *//*
+
     public static String getVideoStream(String filePath,String imagePath,String streamURL){
         return getStream(filePath,imagePath,streamURL,false);
     }
 
-    /**
+    */
+/**
      * 获取视频流快照
      * @param filePath
      * @param streamURL
-     */
+     *//*
+
     public static String getStreamScreenshot(String filePath,String imagePath,String streamURL){
         return getStream(filePath,imagePath,streamURL,true);
     }
 
-    /**
+    */
+/**
      * 开始执行下拉流截视频流
-     */
+     *//*
+
     public static String getStream(String filePath,String imagePath,String streamURL,boolean screenshot){
         VideoUtil videoUtil = new VideoUtil();
         videoUtil.setFilePath(filePath);
@@ -212,4 +227,4 @@ public class VideoUtil{
     }
 
 
-}
+}*/

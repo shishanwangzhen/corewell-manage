@@ -1,6 +1,7 @@
 package com.corewell.corewellmanage.utils;
 
-import com.corewell.study.constants.BaseConstants;
+
+import com.corewell.corewellmanage.constants.BaseConstants;
 
 import java.util.regex.Pattern;
 

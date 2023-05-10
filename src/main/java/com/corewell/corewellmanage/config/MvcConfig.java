@@ -23,7 +23,7 @@ public class MvcConfig implements WebMvcConfigurer {
         }*/
         registry.addInterceptor(jwtInterceptor())
                 //添加拦截
-                .addPathPatterns("/core/**");
+                .addPathPatterns("/corewell/**");
         //放开拦截
         //.excludePathPatterns("/services","/username");
     }

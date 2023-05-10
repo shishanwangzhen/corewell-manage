@@ -25,13 +25,13 @@ spring:
       connection-test-query: SELECT 1
 
   # influxDB
-  influx:
-    url: http://127.0.0.1:8083
-    user: root
-    password: root
-    database: test
-    retention_policy: default
-    retention_policy_time: 30d
+#  influx:
+#    url: http://127.0.0.1:8083
+#    user: root
+#    password: root
+#    database: test
+#    retention_policy: default
+#    retention_policy_time: 30d
 
 
   #配置rabbitMq 服务器
@@ -71,7 +71,7 @@ swagger:
   enabled: true
   title: swagger doc
   description: swagger doc
-  base-package: com.corewell.study
+  base-package: com.corewell.corewellmanage
   base-path: /**
   exclude-path: /error
   contract:
@@ -82,18 +82,18 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   #配置mapper数据还回类型的别名（默认别名是类名）
   #mybatis.configuration.call-setters-on-nulls=true
-  type-aliases-package: com.corewell.study.domain
+  type-aliases-package: com.corewell.corewellmanage.domain
   configuration-properties: classpath:mybatis-config.xml
 
   #mybatis sql 打印（方法接口所在的包，不是Mapper.xml 文件所在的包）
 logging:
   level:
-    com.corewell.study.dao: debug
+    com.corewell.corewellmanage.dao: debug
   #日志相关配置
     #日志相关配置
   config: classpath:logback-spring.xml
   file:
-    path: /home/core_njny/logs/
+    path: /home/corewell_manage/logs/
 jwt:
   #JWT 存储请求头
   tokenHeader: Authorization

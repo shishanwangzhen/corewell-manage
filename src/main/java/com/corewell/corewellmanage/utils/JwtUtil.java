@@ -5,7 +5,7 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.corewell.study.domain.result.ResultStatusCode;
+import com.corewell.corewellmanage.result.ResultStatusCode;
 
 import java.util.Date;
 import java.util.Map;

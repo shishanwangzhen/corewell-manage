@@ -1,6 +1,6 @@
 package com.corewell.corewellmanage.utils;
 
-import com.corewell.study.domain.Account;
+import com.corewell.corewellmanage.domain.Account;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

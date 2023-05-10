@@ -1,6 +1,6 @@
 package com.corewell.corewellmanage.utils;
 
-import com.corewell.study.domain.result.PageParam;
+import com.corewell.corewellmanage.result.PageParam;
 import com.github.pagehelper.PageHelper;
 
 /**
