@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//www.mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.corewell.corewellmanage.dao.FileDao">
+    <resultMap id="FileMap" type="com.corewell.corewellmanage.domain.File">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="path" column="path"/>
+        <result property="notes" column="notes"/>
+        <result property="projectId" column="project_id"/>
+        <result property="creatorId" column="creator_id"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <select id="getFile" parameterType="FileParam" resultType="File">
+        select id, name,path, notes, project_id as projectId,creator_id as creatorId,
+        create_time as createTime
+        from file
+        where 1=1
+        <if test="id!=null and id!=''">
+            and id=#{id}
+        </if>
+        <if test="name!=null and name!=''">
+            and name like CONCAT('%' , #{name ,jdbcType=VARCHAR},'%')
+        </if>
+        order by create_time desc
+    </select>
+
+    <insert id="addFile" parameterType="FileAddParam">
+        insert into file
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="name!=null and name!=''">
+                name,
+            </if>
+            <if test="path!=null and path!=''">
+                path,
+            </if>
+            <if test="notes!=null and notes!=''">
+                notes,
+            </if>
+            <if test="projectId!=null and projectId!=''">
+                project_id,
+            </if>
+            <if test="createTime!=null">
+                create_time,
+            </if>
+            <if test="creatorId!=null and creatorId!=''">
+                creator_id
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+            <if test="name!=null and name!=''">
+                #{name},
+            </if>
+            <if test="path!=null and path!=''">
+                #{path},
+            </if>
+            <if test="notes!=null and notes!=''">
+                #{notes},
+            </if>
+            <if test="projectId!=null and projectId!=''">
+                #{projectId},
+            </if>
+            <if test="createTime!=null">
+                #{createTime},
+            </if>
+            <if test="creatorId!=null and creatorId!=''">
+                #{creatorId}
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateFile" parameterType="FileUpdateParam">
+        update file
+        <set>
+            <if test="name!=null and name!=''">
+                name = #{name},
+            </if>
+
+            <if test="path!=null and path!=''">
+                path =#{path},
+            </if>
+            <if test="notes!=null and notes!=''">
+                notes =#{notes},
+            </if>
+            <if test="projectId!=null and projectId!=''">
+                project_id =#{projectId},
+            </if>
+            <if test="createTime!=null">
+                create_time =#{createTime},
+            </if>
+            <if test="creatorId!=null and creatorId!=''">
+                creator_id =#{creatorId}
+            </if>
+
+        </set>
+        where id=#{id}
+    </update>
+
+    <update id="deleteFile" parameterType="Long">
+        delete
+        from file
+        where id = #{id}
+    </update>
+</mapper>
+
