@@ -1,6 +1,5 @@
 package com.corewell.corewellmanage.dao;
 
-import com.corewell.corewellmanage.domain.File;
 import com.corewell.corewellmanage.domain.Project;
 import com.corewell.corewellmanage.domain.request.*;
 import org.apache.ibatis.annotations.Mapper;

@@ -3,7 +3,7 @@
         PUBLIC "-//www.mybatis.org//DTD Mapper 3.0//EN"
         "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.corewell.corewellmanage.dao.FileDao">
-    <resultMap id="FileMap" type="com.corewell.corewellmanage.domain.File">
+    <resultMap id="FileMap" type="com.corewell.corewellmanage.domain.Files">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="path" column="path"/>
@@ -13,10 +13,10 @@
         <result property="createTime" column="create_time"/>
     </resultMap>
 
-    <select id="getFile" parameterType="FileParam" resultType="File">
+    <select id="getFile" parameterType="FileParam" resultType="Files">
         select id, name,path, notes, project_id as projectId,creator_id as creatorId,
         create_time as createTime
-        from file
+        from files
         where 1=1
         <if test="id!=null and id!=''">
             and id=#{id}
@@ -27,8 +27,22 @@
         order by create_time desc
     </select>
 
+    <select id="getFileById" parameterType="Long" resultType="Files">
+        select id,
+               name,
+               path,
+               notes,
+               project_id  as projectId,
+               creator_id  as creatorId,
+               create_time as createTime
+        from files
+        where 1 = 1
+          and id = #{id}
+    </select>
+
+
     <insert id="addFile" parameterType="FileAddParam">
-        insert into file
+        insert into files
         <trim prefix="(" suffix=")" suffixOverrides=",">
 
             <if test="name!=null and name!=''">
@@ -75,7 +89,7 @@
 
 
     <update id="updateFile" parameterType="FileUpdateParam">
-        update file
+        update files
         <set>
             <if test="name!=null and name!=''">
                 name = #{name},
@@ -103,7 +117,7 @@
 
     <update id="deleteFile" parameterType="Long">
         delete
-        from file
+        from files
         where id = #{id}
     </update>
 </mapper>

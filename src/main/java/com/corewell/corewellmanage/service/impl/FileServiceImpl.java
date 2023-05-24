@@ -2,8 +2,7 @@ package com.corewell.corewellmanage.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.corewell.corewellmanage.dao.FileDao;
-import com.corewell.corewellmanage.domain.Account;
-import com.corewell.corewellmanage.domain.File;
+import com.corewell.corewellmanage.domain.Files;
 import com.corewell.corewellmanage.domain.request.FileAddParam;
 import com.corewell.corewellmanage.domain.request.FileParam;
 import com.corewell.corewellmanage.domain.request.FileUpdateParam;
@@ -53,7 +52,12 @@ public class FileServiceImpl implements FileService {
     @Override
     public ResultMsg getFile(FileParam fileParam) {
         log.info("getAccount:  accountParam:  " + JSON.toJSONString(fileParam));
-        List<File> result=fileDao.getFile(fileParam);
+        List<Files> result=fileDao.getFile(fileParam);
         return ResultMsg.success(result);
+    }
+
+    @Override
+    public Files getFileById(Long id) {
+        return fileDao.getFileById(id);
     }
 }

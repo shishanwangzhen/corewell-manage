@@ -15,7 +15,7 @@ import java.util.Date;
 @ApiModel("文件")
 @AllArgsConstructor
 @NoArgsConstructor
-public class File {
+public class Files {
   /**
    * 主键id
    */

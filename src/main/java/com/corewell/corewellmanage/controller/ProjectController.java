@@ -1,10 +1,8 @@
 package com.corewell.corewellmanage.controller;
 
-import com.corewell.corewellmanage.domain.File;
 import com.corewell.corewellmanage.domain.Project;
 import com.corewell.corewellmanage.domain.request.*;
 import com.corewell.corewellmanage.result.ResultMsg;
-import com.corewell.corewellmanage.service.FileService;
 import com.corewell.corewellmanage.service.ProjectService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

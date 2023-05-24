@@ -1,6 +1,7 @@
 package com.corewell.corewellmanage.service;
 
 
+import com.corewell.corewellmanage.domain.Files;
 import com.corewell.corewellmanage.domain.request.FileAddParam;
 import com.corewell.corewellmanage.domain.request.FileParam;
 import com.corewell.corewellmanage.domain.request.FileUpdateParam;
@@ -46,5 +47,14 @@ public interface FileService {
      * @return
      */
     ResultMsg getFile(FileParam fileParam);
+
+    /**
+     * 通过id查询文件
+     *
+     * @param id
+     * @return
+     */
+    Files getFileById(Long id);
+
 
 }
