@@ -6,7 +6,6 @@
     <resultMap id="NodeMap" type="com.corewell.corewellmanage.domain.Node">
         <id property="id" column="id"/>
         <result property="time" column="time"/>
-        <result property="path" column="path"/>
         <result property="notes" column="notes"/>
         <result property="projectId" column="project_id"/>
         <result property="creatorId" column="creator_id"/>

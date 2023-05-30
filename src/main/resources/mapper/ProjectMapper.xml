@@ -7,10 +7,10 @@
         <id property="id" column="id"/>
         <result property="number" column="number"/>
         <result property="name" column="name"/>
-        <result property="creator_id" column="creatorId"/>
+        <result property="creatorId" column="creator_id"/>
         <result property="address" column="address"/>
-        <result property="start_time" column="startTime"/>
-        <result property="end_time" column="endTime"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
     </resultMap>
 
     <select id="getProject" parameterType="ProjectParam" resultType="Project">

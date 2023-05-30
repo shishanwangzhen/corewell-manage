@@ -142,15 +142,15 @@ public class FileController {
                 dateDirPath.mkdirs();
             }
             file.transferTo(new File(dateDirPath, fileName));
-
+            String path = Paths.get(localContainer, dateFormat, fileName).toString();
             FileAddParam fileAddParam = new FileAddParam();
-            fileAddParam.setPath(Paths.get(localContainer, dateFormat, fileName).toString());
+            fileAddParam.setPath(path);
             fileAddParam.setName(fileName);
             fileAddParam.setProjectId(projectId);
             fileAddParam.setCreatorId(Long.valueOf(map.get("id").toString()));
 
             fileService.addFile(fileAddParam); // 将文件信息存入数据库
-            return ResultMsg.success();
+            return ResultMsg.success(path);
 
         } catch (Exception e) {
             log.error(e.toString());

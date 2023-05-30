@@ -13,7 +13,7 @@ import java.util.Date;
  * @author Administrator
  */
 @Data
-@ApiModel("查询账户入参")
+@ApiModel("查询文件入参")
 @AllArgsConstructor
 @NoArgsConstructor
 public class FileParam {
