@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//www.mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.corewell.corewellmanage.dao.MaterialNameDao">
+    <resultMap id="MaterialNameMap" type="com.corewell.corewellmanage.domain.MaterialName">
+        <id property="id" column="id"/>
+     
+        <result property="name" column="name"/>
+        <result property="number" column="number"/>
+        <result property="path" column="path"/>
+        <result property="parameter" column="parameter"/>
+        <result property="type" column="type"/>
+        <result property="notes" column="notes"/>
+        <result property="creatorId" column="creator_id"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <select id="getMaterialName" parameterType="MaterialNameParam" resultType="MaterialName">
+        select id, name, number, path ,parameter, type,notes,creator_id as creatorId, create_time as createTime
+        from material_name
+        where 1=1
+        <if test="id!=null and id!=''">
+            and id=#{id}
+        </if>
+        <if test="name!=null and name!=''">
+            and name like CONCAT('%' , #{name ,jdbcType=VARCHAR},'%')
+        </if>
+    </select>
+
+    <insert id="addMaterialName" parameterType="MaterialNameAddParam">
+        insert into material_name
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="name!=null and name!=''">
+                name,
+            </if>
+            <if test="number!=null and number!=''">
+                number,
+            </if>
+            <if test="path!=null and path!=''">
+                path,
+            </if>
+            <if test="parameter!=null and parameter!=''">
+                parameter,
+            </if>
+            <if test="type!=null and type!=''">
+                #{type},
+            </if>
+            <if test="notes!=null and notes!=''">
+                notes,
+            </if>
+            <if test="createTime!=null">
+                create_time,
+            </if>
+            <if test="creatorId!=null and creatorId!=''">
+                creator_id
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+            <if test="name!=null and name!=''">
+                #{name},
+            </if>
+            <if test="number!=null and number!=''">
+                #{number},
+            </if>
+            <if test="path!=null and path!=''">
+                #{path},
+            </if>
+            <if test="parameter!=null and parameter!=''">
+                #{parameter},
+            </if>
+            <if test="type!=null and type!=''">
+                #{type},
+            </if>
+            <if test="notes!=null and notes!=''">
+                #{notes},
+            </if>
+            <if test="createTime!=null">
+                #{createTime},
+            </if>
+            <if test="creatorId!=null and creatorId!=''">
+                #{creatorId}
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateMaterialName" parameterType="MaterialNameUpdateParam">
+        update material_name
+        <set>
+
+            <if test="name!=null and name!=''">
+                name=#{name},
+            </if>
+            <if test="number!=null and number!=''">
+                number=#{number},
+            </if>
+            <if test="path!=null and path!=''">
+                path =#{path},
+            </if>
+            <if test="parameter!=null and parameter!=''">
+                parameter =#{parameter},
+            </if>
+            <if test="type!=null and type!=''">
+                type =#{type},
+            </if>
+            <if test="notes!=null and notes!=''">
+                notes =#{notes},
+            </if>
+
+        </set>
+        where id=#{id}
+    </update>
+
+    <update id="deleteMaterialName" parameterType="Long">
+        delete
+        from material_name
+        where id = #{id}
+    </update>
+</mapper>
+
