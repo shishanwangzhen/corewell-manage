@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//www.mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.corewell.corewellmanage.dao.NetworkCardDao">
+    <resultMap id="NetworkCardMap" type="com.corewell.corewellmanage.domain.NetworkCard">
+        <id property="id" column="id"/>
+        <result property="iccid" column="iccid"/>
+        <result property="operator" column="operator"/>
+        <result property="supplierId" column="supplier_id"/>
+        <result property="projectId" column="project_id"/>
+        <result property="joinTime" column="join_time"/>
+        <result property="device" column="device"/>
+        <result property="deviceId" column="device_id"/>
+        <result property="deviceAddress" column="device_address"/>
+        <result property="packages" column="packages"/>
+        <result property="packagesType" column="packages_type"/>
+        <result property="hibernateType" column="hibernate_type"/>
+        <result property="hibernateEndTime" column="hibernate_end_time"/>
+        <result property="activationTime" column="activation_time"/>
+        <result property="notes" column="notes"/>
+        <result property="creatorId" column="creator_id"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <select id="getNetworkCard" parameterType="NetworkCardParam" resultType="NetworkCard">
+        select id, iccid, operator, supplier_id as supplierId,project_id as projectId,join_time as joinTime,
+        device, device_id as deviceId,device_address as deviceAddress,packages,packages_type as packagesType,
+        hibernate_type as packagesType,hibernate_end_time as hibernateEndTime,activation_time as activationTime,
+        notes,creator_id as creatorId,create_time as createTime
+        from network_card
+        where 1=1
+        <if test="id!=null and id!=''">
+            and id=#{id}
+        </if>
+        <if test="iccid!=null and iccid!=''">
+            and iccid like CONCAT('%' , #{iccid ,jdbcType=VARCHAR},'%')
+        </if>
+    </select>
+
+    <insert id="addNetworkCard" parameterType="NetworkCardAddParam">
+        insert into network_card
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="iccid!=null and iccid!=''">
+                iccid,
+            </if>
+            <if test="operator!=null and operator!=''">
+                operator,
+            </if>
+            <if test="supplierId!=null and supplierId!=''">
+                supplier_id,
+            </if>
+            <if test="projectId!=null and projectId!=''">
+                project_id,
+            </if>
+            <if test="joinTime!=null">
+                join_time,
+            </if>
+            <if test="device!=null and device!=''">
+                device,
+            </if>
+            <if test="deviceId!=null and deviceId!=''">
+                device_id,
+            </if>
+
+            <if test="deviceAddress!=null and deviceAddress!=''">
+                device_address,
+            </if>
+            <if test="packages!=null and packages!=''">
+                packages,
+            </if>
+            <if test="packagesType!=null and packagesType!=''">
+                packages_type,
+            </if>
+            <if test="hibernateType!=null and hibernateType!=''">
+                hibernate_type,
+            </if>
+            <if test="hibernateEndTime!=null">
+                hibernate_end_time,
+            </if>
+            <if test="activationTime!=null">
+                activation_time,
+            </if>
+            <if test="notes!=null and notes!=''">
+                notes,
+            </if>
+            <if test="createTime!=null">
+                create_time,
+            </if>
+            <if test="creatorId!=null and creatorId!=''">
+                creator_id
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="iccid!=null and iccid!=''">
+                #{iccid},
+            </if>
+            <if test="operator!=null and operator!=''">
+                #{operator},
+            </if>
+            <if test="supplierId!=null and supplierId!=''">
+                #{supplierId},
+            </if>
+            <if test="projectId!=null and projectId!=''">
+                #{projectId},
+            </if>
+            <if test="joinTime!=null">
+                #{joinTime},
+            </if>
+            <if test="device!=null and device!=''">
+                #{device},
+            </if>
+            <if test="deviceId!=null and deviceId!=''">
+                #{deviceId},
+            </if>
+
+            <if test="deviceAddress!=null and deviceAddress!=''">
+                #{deviceAddress},
+            </if>
+            <if test="packages!=null and packages!=''">
+                #{packages},
+            </if>
+            <if test="packagesType!=null and packagesType!=''">
+                #{packagesType},
+            </if>
+            <if test="hibernateType!=null and hibernateType!=''">
+                #{hibernateType},
+            </if>
+            <if test="hibernateEndTime!=null">
+                #{hibernateEndTime},
+            </if>
+            <if test="activationTime!=null">
+                #{activationTime},
+            </if>
+            <if test="notes!=null and notes!=''">
+                #{notes},
+            </if>
+            <if test="createTime!=null">
+                #{createTime},
+            </if>
+            <if test="creatorId!=null and creatorId!=''">
+                #{creatorId}
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateNetworkCard" parameterType="NetworkCardUpdateParam">
+        update network_card
+        <set>
+            <if test="iccid!=null and iccid!=''">
+                iccid=#{iccid},
+            </if>
+            <if test="operator!=null and operator!=''">
+                operator=#{operator},
+            </if>
+            <if test="supplierId!=null and supplierId!=''">
+                supplier_id=#{supplierId},
+            </if>
+            <if test="projectId!=null and projectId!=''">
+                project_id=#{projectId},
+            </if>
+            <if test="joinTime!=null">
+                join_time=#{joinTime},
+            </if>
+            <if test="device!=null and device!=''">
+                device=#{device},
+            </if>
+            <if test="deviceId!=null and deviceId!=''">
+                device_id=#{deviceId},
+            </if>
+
+            <if test="deviceAddress!=null and deviceAddress!=''">
+                device_address=#{deviceAddress},
+            </if>
+            <if test="packages!=null and packages!=''">
+                packages=#{packages},
+            </if>
+            <if test="packagesType!=null and packagesType!=''">
+                packages_type=#{packagesType},
+            </if>
+            <if test="hibernateType!=null and hibernateType!=''">
+                hibernate_type=#{hibernateType},
+            </if>
+            <if test="hibernateEndTime!=null">
+                hibernate_end_time=#{hibernateEndTime},
+            </if>
+            <if test="activationTime!=null">
+                activation_time=#{activationTime},
+            </if>
+            <if test="notes!=null and notes!=''">
+                notes=#{notes}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <update id="deleteNetworkCard" parameterType="Long">
+        delete
+        from network_card
+        where id = #{id}
+    </update>
+</mapper>
+
