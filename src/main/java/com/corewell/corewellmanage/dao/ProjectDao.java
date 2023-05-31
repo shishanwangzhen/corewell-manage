@@ -2,6 +2,8 @@ package com.corewell.corewellmanage.dao;
 
 import com.corewell.corewellmanage.domain.Project;
 import com.corewell.corewellmanage.domain.request.*;
+import com.corewell.corewellmanage.domain.response.ProjectDTO;
+import com.corewell.corewellmanage.domain.template.ProjectTemplate;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -46,5 +48,22 @@ public interface ProjectDao {
      * @return
      */
     List<Project> getProject(ProjectParam projectParam);
+
+    /**
+     * 获取项目分页列表
+     *
+     * @param projectParam
+     * @return
+     */
+    List<ProjectDTO> selectProject(ProjectParam projectParam);
+
+    /**
+     * 获取项目导出列表
+     *
+     * @param projectParam
+     * @return
+     */
+    List<ProjectTemplate> downloadProject(ProjectParam projectParam);
+
 
 }

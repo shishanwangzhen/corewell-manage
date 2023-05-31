@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//www.mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.corewell.corewellmanage.dao.MaterialReceiptDao">
+    <resultMap id="MaterialReceiptMap" type="com.corewell.corewellmanage.domain.MaterialReceipt">
+        <id property="id" column="id"/>
+
+        <result property="materialId" column="material_id"/>
+        <result property="parameter" column="parameter"/>
+        <result property="counts" column="counts"/>
+        <result property="unit" column="unit"/>
+        <result property="warehouseId" column="warehouse_id"/>
+        <result property="warehouseAddress" column="warehouse_address"/>
+        <result property="endTime" column="end_time"/>
+        <result property="source" column="source"/>
+        <result property="notes" column="notes"/>
+        <result property="creatorId" column="creator_id"/>
+        <result property="createTime" column="create_time"/>
+
+    </resultMap>
+
+    <select id="getMaterialReceipt" parameterType="MaterialReceiptParam" resultType="MaterialReceipt">
+        select id, material_id as materialId, parameter, counts, unit,warehouse_id as warehouseId,
+        warehouse_address as warehouseAddress,end_time as endTime,source,notes,
+        creator_id as creatorId, create_time as createTime
+        from material_receipt
+        where 1=1
+        <if test="id!=null and id!=''">
+            and id=#{id}
+        </if>
+
+    </select>
+
+    <insert id="addMaterialReceipt" parameterType="MaterialReceiptAddParam">
+        insert into material_receipt
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="materialId!=null and materialId!=''">
+                material_id,
+            </if>
+            <if test="parameter!=null and parameter!=''">
+                parameter,
+            </if>
+            <if test="counts!=null and counts!=''">
+                counts,
+            </if>
+            <if test="unit!=null and unit!=''">
+                unit,
+            </if>
+            <if test="warehouseId!=null and warehouseId!=''">
+                warehouse_id,
+            </if>
+            <if test="warehouseAddress!=null and warehouseAddress!=''">
+                warehouse_address,
+            </if>
+            <if test="endTime!=null">
+                end_time,
+            </if>
+            <if test="source!=null and source!=''">
+                source,
+            </if>
+            <if test="notes!=null and notes!=''">
+                notes,
+            </if>
+            <if test="createTime!=null">
+                create_time,
+            </if>
+            <if test="creatorId!=null and creatorId!=''">
+                creator_id
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+            <if test="materialId!=null and materialId!=''">
+                #{materialId},
+            </if>
+            <if test="parameter!=null and parameter!=''">
+                #{parameter},
+            </if>
+            <if test="counts!=null and counts!=''">
+                #{counts},
+            </if>
+            <if test="unit!=null and unit!=''">
+                #{unit},
+            </if>
+            <if test="warehouseId!=null and warehouseId!=''">
+                #{warehouseId},
+            </if>
+            <if test="warehouseAddress!=null and warehouseAddress!=''">
+                #{warehouseAddress},
+            </if>
+            <if test="endTime!=null">
+                #{endTime},
+            </if>
+            <if test="source!=null and source!=''">
+                #{source},
+            </if>
+            <if test="notes!=null and notes!=''">
+                #{notes},
+            </if>
+            <if test="createTime!=null">
+                #{createTime},
+            </if>
+            <if test="creatorId!=null and creatorId!=''">
+                #{creatorId}
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateMaterialReceipt" parameterType="MaterialReceiptUpdateParam">
+        update material_receipt
+        <set>
+            <if test="materialId!=null and materialId!=''">
+                material_id=#{materialId},
+            </if>
+            <if test="parameter!=null and parameter!=''">
+                parameter= #{parameter},
+            </if>
+            <if test="counts!=null and counts!=''">
+                counts =#{counts},
+            </if>
+            <if test="unit!=null and unit!=''">
+                unit = #{unit},
+            </if>
+            <if test="warehouseId!=null and warehouseId!=''">
+                warehouse_id =#{warehouseId},
+            </if>
+            <if test="warehouseAddress!=null and warehouseAddress!=''">
+                warehouse_address=#{warehouseAddress},
+            </if>
+            <if test="endTime!=null">
+                end_time= #{endTime},
+            </if>
+            <if test="source!=null and source!=''">
+                source = #{source},
+            </if>
+            <if test="notes!=null and notes!=''">
+                notes=#{notes}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <update id="deleteMaterialReceipt" parameterType="Long">
+        delete
+        from material_receipt
+        where id = #{id}
+    </update>
+</mapper>
+

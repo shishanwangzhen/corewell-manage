@@ -7,15 +7,17 @@
         <id property="id" column="id"/>
         <result property="number" column="number"/>
         <result property="name" column="name"/>
-        <result property="creatorId" column="creator_id"/>
         <result property="address" column="address"/>
+        <result property="managerId" column="manager_id"/>
         <result property="startTime" column="start_time"/>
         <result property="endTime" column="end_time"/>
+        <result property="creatorId" column="creator_id"/>
+        <result property="createTime" column="create_time"/>
     </resultMap>
 
     <select id="getProject" parameterType="ProjectParam" resultType="Project">
-        select id, name,number, address, creator_id as creatorId,start_time as startTime,
-        end_time as endTime
+        select id, number,name, address, manager_id as managerId,start_time as startTime,
+        end_time as endTime,creator_id as creatorId,create_time as createTime
         from project
         where 1=1
         <if test="id!=null and id!=''">
@@ -23,6 +25,31 @@
         </if>
         <if test="name!=null and name!=''">
             and name like CONCAT('%' , #{name ,jdbcType=VARCHAR},'%')
+        </if>
+    </select>
+
+    <select id="selectProject" parameterType="ProjectParam" resultType="ProjectDTO">
+        select p.name as name,p.number as number, p.address as address, a.name as manager,p.start_time as startTime,
+        p.end_time as endTime
+        from project p left join account a on p.manager_id=a.id
+        where 1=1
+        <if test="id!=null and id!=''">
+            and p.id=#{id}
+        </if>
+        <if test="name!=null and name!=''">
+            and p.name like CONCAT('%' , #{name ,jdbcType=VARCHAR},'%')
+        </if>
+    </select>
+    <select id="downloadProject" parameterType="ProjectParam" resultType="ProjectTemplate">
+        select p.name as name,p.number as number, p.address as address, a.name as manager,p.start_time as startTime,
+        p.end_time as endTime
+        from project p left join account a on p.manager_id=a.id
+        where 1=1
+        <if test="id!=null and id!=''">
+            and p.id=#{id}
+        </if>
+        <if test="name!=null and name!=''">
+            and p.name like CONCAT('%' , #{name ,jdbcType=VARCHAR},'%')
         </if>
     </select>
 
@@ -39,6 +66,9 @@
             <if test="address!=null and address!=''">
                 address,
             </if>
+            <if test="managerId!=null and managerId!=''">
+                manager_id,
+            </if>
             <if test="startTime!=null">
                 start_time,
             </if>
@@ -46,7 +76,10 @@
                 end_time,
             </if>
             <if test="creatorId!=null and creatorId!=''">
-                creator_id
+                creator_id,
+            </if>
+            <if test="createTime!=null">
+                create_time
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -60,14 +93,20 @@
             <if test="address!=null and address!=''">
                 #{address},
             </if>
-            <if test="startTime!=null and startTime!=''">
+            <if test="managerId!=null and managerId!=''">
+                #{managerId},
+            </if>
+            <if test="startTime!=null">
                 #{startTime},
             </if>
             <if test="endTime!=null">
                 #{endTime},
             </if>
             <if test="creatorId!=null and creatorId!=''">
-                #{creatorId}
+                #{creatorId},
+            </if>
+            <if test="createTime!=null">
+                #{createTime}
             </if>
         </trim>
     </insert>
@@ -86,15 +125,16 @@
             <if test="address!=null and address!=''">
                 address =#{address},
             </if>
+            <if test="managerId!=null and managerId!=''">
+                manager_id =#{managerId},
+            </if>
             <if test="startTime!=null">
                 start_time =#{startTime},
             </if>
             <if test="endTime!=null">
-                end_time =#{endTime},
+                end_time =#{endTime}
             </if>
-            <if test="creatorId!=null and creatorId!=''">
-                creator_id =#{creatorId}
-            </if>
+
 
         </set>
         where id=#{id}

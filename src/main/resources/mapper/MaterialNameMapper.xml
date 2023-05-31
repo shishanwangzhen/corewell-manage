@@ -45,7 +45,7 @@
                 parameter,
             </if>
             <if test="type!=null and type!=''">
-                #{type},
+                type,
             </if>
             <if test="notes!=null and notes!=''">
                 notes,

@@ -1,11 +1,9 @@
 package com.corewell.corewellmanage.service;
 
-import com.corewell.corewellmanage.domain.Node;
 import com.corewell.corewellmanage.domain.request.NodeAddParam;
 import com.corewell.corewellmanage.domain.request.NodeParam;
 import com.corewell.corewellmanage.domain.request.NodeUpdateParam;
 import com.corewell.corewellmanage.result.ResultMsg;
-import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
@@ -16,7 +14,6 @@ import java.util.List;
  * @Date: 2023/05/10/15:17
  * @Description:
  */
-@Mapper
 public interface NodeService {
     /**
      * 添加节点

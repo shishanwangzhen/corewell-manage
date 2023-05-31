@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//www.mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.corewell.corewellmanage.dao.MaterialApplyDao">
+    <resultMap id="MaterialApplyMap" type="com.corewell.corewellmanage.domain.MaterialApply">
+        <id property="id" column="id"/>
+        <result property="applicationFormId" column="application_form_id"/>
+        <result property="materialId" column="material_id"/>
+        <result property="parameter" column="parameter"/>
+        <result property="counts" column="counts"/>
+        <result property="unit" column="unit"/>
+        <result property="price" column="price"/>
+        <result property="freight" column="freight"/>
+        <result property="link" column="link"/>
+        <result property="notes" column="notes"/>
+        <result property="creatorId" column="creator_id"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <select id="getMaterialApply" parameterType="MaterialApplyParam" resultType="MaterialApply">
+        select id,application_form_id as applicationFormId, material_id as materialId, parameter, counts, unit ,
+        price, freight,link,notes,creator_id as creatorId, create_time as createTime
+        from material_apply
+        where 1=1
+        <if test="id!=null and id!=''">
+            and id=#{id}
+        </if>
+
+    </select>
+
+    <insert id="addMaterialApply" parameterType="MaterialApplyAddParam">
+        insert into material_apply
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="applicationFormId!=null and applicationFormId!=''">
+                application_form_id,
+            </if>
+            <if test="materialId!=null and materialId!=''">
+                material_id,
+            </if>
+            <if test="parameter!=null and parameter!=''">
+                parameter,
+            </if>
+            <if test="counts!=null and counts!=''">
+                counts,
+            </if>
+            <if test="unit!=null and unit!=''">
+                unit,
+            </if>
+            <if test="price!=null and price!=''">
+                price,
+            </if>
+            <if test="freight!=null and freight!=''">
+                freight,
+            </if>
+            <if test="link!=null and link!=''">
+                link,
+            </if>
+            <if test="notes!=null and notes!=''">
+                notes,
+            </if>
+            <if test="createTime!=null">
+                create_time,
+            </if>
+            <if test="creatorId!=null and creatorId!=''">
+                creator_id
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+            <if test="applicationFormId!=null and applicationFormId!=''">
+                #{applicationFormId},
+            </if>
+            <if test="materialId!=null and materialId!=''">
+                #{materialId},
+            </if>
+            <if test="parameter!=null and parameter!=''">
+                #{parameter},
+            </if>
+            <if test="counts!=null and counts!=''">
+                #{counts},
+            </if>
+            <if test="unit!=null and unit!=''">
+                #{unit},
+            </if>
+            <if test="price!=null and price!=''">
+                #{price},
+            </if>
+            <if test="freight!=null and freight!=''">
+                #{freight},
+            </if>
+            <if test="link!=null and link!=''">
+                #{link},
+            </if>
+            <if test="notes!=null and notes!=''">
+                #{notes},
+            </if>
+            <if test="createTime!=null">
+                #{createTime},
+            </if>
+            <if test="creatorId!=null and creatorId!=''">
+                #{creatorId}
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateMaterialApply" parameterType="MaterialApplyUpdateParam">
+        update material_apply
+        <set>
+            <if test="applicationFormId!=null and applicationFormId!=''">
+                application_form_id =#{applicationFormId},
+            </if>
+            <if test="materialId!=null and materialId!=''">
+                material_id= #{materialId},
+            </if>
+            <if test="parameter!=null and parameter!=''">
+                parameter =#{parameter},
+            </if>
+            <if test="counts!=null and counts!=''">
+                counts = #{counts},
+            </if>
+            <if test="unit!=null and unit!=''">
+                unit =#{unit},
+            </if>
+            <if test="price!=null and price!=''">
+                price=#{price},
+            </if>
+            <if test="freight!=null and freight!=''">
+                freight =#{freight},
+            </if>
+            <if test="link!=null and link!=''">
+                link=#{link},
+            </if>
+            <if test="notes!=null and notes!=''">
+                notes = #{notes}
+            </if>
+
+        </set>
+        where id=#{id}
+    </update>
+
+    <update id="deleteMaterialApply" parameterType="Long">
+        delete
+        from material_apply
+        where id = #{id}
+    </update>
+</mapper>
+

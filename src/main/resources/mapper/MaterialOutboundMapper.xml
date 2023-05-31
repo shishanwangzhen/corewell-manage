@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//www.mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.corewell.corewellmanage.dao.MaterialOutboundDao">
+    <resultMap id="MaterialOutboundMap" type="com.corewell.corewellmanage.domain.MaterialOutbound">
+        <id property="id" column="id"/>
+        <result property="materialId" column="material_id"/>
+        <result property="outboundApplyId" column="outbound_apply_id"/>
+        <result property="parameter" column="parameter"/>
+        <result property="counts" column="counts"/>
+        <result property="unit" column="unit"/>
+        <result property="notes" column="notes"/>
+        <result property="creatorId" column="creator_id"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <select id="getMaterialOutbound" parameterType="MaterialOutboundParam" resultType="MaterialOutbound">
+        select id, counts, unit, material_id as materialId,parameter, outbound_apply_id as outboundApplyId,
+               notes,creator_id as creatorId, create_time as createTime
+        from material_outbound
+        where 1=1
+        <if test="id!=null and id!=''">
+            and id=#{id}
+        </if>
+
+    </select>
+
+    <insert id="addMaterialOutbound" parameterType="MaterialOutboundAddParam">
+        insert into material_outbound
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="materialId!=null and materialId!=''">
+                material_id,
+            </if>
+            <if test="outboundApplyId!=null and outboundApplyId!=''">
+                outbound_apply_id,
+            </if>
+            <if test="parameter!=null and parameter!=''">
+                parameter,
+            </if>
+            <if test="counts!=null and counts!=''">
+                counts,
+            </if>
+            <if test="unit!=null and unit!=''">
+                unit,
+            </if>
+            <if test="notes!=null and notes!=''">
+                notes,
+            </if>
+            <if test="createTime!=null">
+                create_time,
+            </if>
+            <if test="creatorId!=null and creatorId!=''">
+                creator_id
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="materialId!=null and materialId!=''">
+                #{materialId},
+            </if>
+            <if test="outboundApplyId!=null and outboundApplyId!=''">
+                #{outboundApplyId},
+            </if>
+            <if test="parameter!=null and parameter!=''">
+                #{parameter},
+            </if>
+            <if test="counts!=null and counts!=''">
+                #{counts},
+            </if>
+            <if test="unit!=null and unit!=''">
+                #{unit},
+            </if>
+            <if test="notes!=null and notes!=''">
+                #{notes},
+            </if>
+            <if test="createTime!=null">
+                #{createTime},
+            </if>
+            <if test="creatorId!=null and creatorId!=''">
+                #{creatorId}
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateMaterialOutbound" parameterType="MaterialOutboundUpdateParam">
+        update material_outbound
+        <set>
+            <if test="materialId!=null and materialId!=''">
+                material_id =#{materialId},
+            </if>
+            <if test="outboundApplyId!=null and outboundApplyId!=''">
+                outbound_apply_id =#{outboundApplyId},
+            </if>
+            <if test="parameter!=null and parameter!=''">
+                parameter =#{parameter},
+            </if>
+            <if test="counts!=null and counts!=''">
+                counts=#{counts},
+            </if>
+            <if test="unit!=null and unit!=''">
+                unit=#{unit},
+            </if>
+            <if test="notes!=null and notes!=''">
+                notes =#{notes}
+            </if>
+
+        </set>
+        where id=#{id}
+    </update>
+
+    <update id="deleteMaterialOutbound" parameterType="Long">
+        delete
+        from material_outbound
+        where id = #{id}
+    </update>
+</mapper>
+

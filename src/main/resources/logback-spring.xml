@@ -19,7 +19,7 @@
 
 
     <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
-    <property name="LOG_HOME" value="/home/corewell-manage/logs"/>
+    <property name="LOG_HOME" value="/home/core_manage/logs"/>
 
 
     <springProperty scope="context" name="LOG_NAME" source="spring.application.name" defaultValue="localhost"/>
@@ -94,7 +94,7 @@
     </appender>
 
 
-    <logger name="com.corewell.study.dao" level="DEBUG"/>
+    <logger name="com.corewell.corewellmanage.dao" level="DEBUG"/>
     <logger name="org.apache.catalina.util.LifecycleBase" level="ERROR"/>
     <logger name="org.apache.coyote.http11.Http11NioProtocol" level="WARN"/>
     <logger name="org.apache.sshd.common.util.SecurityUtils" level="WARN"/>

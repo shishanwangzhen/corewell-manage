@@ -37,4 +37,11 @@ public class ProjectParam {
   @ApiModelProperty(value = "创建者id", required = false, example = "")
   private Long creatorId;
 
+  /**
+   * 项目经理id
+   */
+  @ApiModelProperty(value = "项目经理id", required = false, example = "")
+  private Long managerId;
+
+
 }

@@ -1,10 +1,15 @@
 package com.corewell.corewellmanage.service;
 
 
+import com.corewell.corewellmanage.domain.Account;
 import com.corewell.corewellmanage.domain.request.AccountAddParam;
+import com.corewell.corewellmanage.domain.request.AccountPageParam;
 import com.corewell.corewellmanage.domain.request.AccountParam;
 import com.corewell.corewellmanage.domain.request.AccountUpdateParam;
 import com.corewell.corewellmanage.result.ResultMsg;
+
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -55,5 +60,24 @@ public interface AccountService {
      * @return
      */
     ResultMsg getAccount(AccountParam accountParam);
+
+    /**
+     * 分页查询账号
+     *
+     * @param accountPageParam
+     * @return
+     */
+    List<Account> selectAccounts(AccountPageParam accountPageParam);
+
+    /**
+     * 导出账号
+     *
+     * @param accountParam
+     * @param response
+     * @return
+     */
+    ResultMsg downloadAccount(AccountParam accountParam, HttpServletResponse response);
+
+
 
 }

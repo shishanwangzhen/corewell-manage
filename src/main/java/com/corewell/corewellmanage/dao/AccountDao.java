@@ -5,6 +5,7 @@ import com.corewell.corewellmanage.domain.request.AccountAddParam;
 import com.corewell.corewellmanage.domain.request.AccountParam;
 import com.corewell.corewellmanage.domain.request.AccountUpdateParam;
 import com.corewell.corewellmanage.domain.response.AccountDTO;
+import com.corewell.corewellmanage.domain.template.AccountTemplate;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -57,5 +58,13 @@ public interface AccountDao {
      * @return
      */
     List<Account> getAccount(AccountParam accountParam);
+
+    /**
+     * 获取账号导出列表
+     *
+     * @param accountParam
+     * @return
+     */
+    List<AccountTemplate> downloadAccount(AccountParam accountParam);
 
 }

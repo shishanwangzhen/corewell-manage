@@ -51,4 +51,15 @@ public class Project {
    */
   @ApiModelProperty(value = "结束时间", required = false, example = "")
   private Date endTime;
+  /**
+   * 项目经理id
+   */
+  @ApiModelProperty(value = "项目经理id", required = false, example = "")
+  private Long managerId;
+
+  /**
+   * 创建时间
+   */
+  @ApiModelProperty(value = "创建时间", required = false, example = "")
+  private Date createTime;
 }

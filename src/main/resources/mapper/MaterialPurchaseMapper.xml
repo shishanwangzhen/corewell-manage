@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//www.mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.corewell.corewellmanage.dao.MaterialPurchaseDao">
+    <resultMap id="MaterialPurchaseMap" type="com.corewell.corewellmanage.domain.MaterialPurchase">
+        <id property="id" column="id"/>
+
+        <result property="materialId" column="material_id"/>
+        <result property="parameter" column="parameter"/>
+        <result property="counts" column="counts"/>
+        <result property="completeCounts" column="complete_counts"/>
+        <result property="incompleteCounts" column="incomplete_counts"/>
+        <result property="unit" column="unit"/>
+        <result property="freight" column="freight"/>
+        <result property="taxation" column="taxation"/>
+        <result property="invoice" column="invoice"/>
+        <result property="link" column="link"/>
+        <result property="price" column="price"/>
+        <result property="totalPrice" column="total_price"/>
+        <result property="notes" column="notes"/>
+        <result property="creatorId" column="creator_id"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <select id="getMaterialPurchase" parameterType="MaterialPurchaseParam" resultType="MaterialPurchase">
+        select id, material_id as materialId, parameter, counts,complete_counts as completeCounts,
+               incomplete_counts as incompleteCounts, unit , freight,taxation,invoice,link,price,
+               total_price as totalPrice,notes,creator_id as creatorId, create_time as createTime
+        from material_purchase
+        where 1=1
+        <if test="id!=null and id!=''">
+            and id=#{id}
+        </if>
+
+    </select>
+
+    <insert id="addMaterialPurchase" parameterType="MaterialPurchaseAddParam">
+        insert into material_purchase
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="materialId!=null and materialId!=''">
+                material_id,
+            </if>
+            <if test="parameter!=null and parameter!=''">
+                parameter,
+            </if>
+            <if test="counts!=null and counts!=''">
+                counts,
+            </if>
+            <if test="completeCounts!=null and completeCounts!=''">
+                complete_counts,
+            </if>
+            <if test="incompleteCounts!=null and incompleteCounts!=''">
+                incomplete_counts,
+            </if>
+            <if test="unit!=null and unit!=''">
+                unit,
+            </if>
+
+            <if test="freight!=null and freight!=''">
+                freight,
+            </if>
+            <if test="taxation!=null and taxation!=''">
+                taxation,
+            </if>
+            <if test="invoice!=null and invoice!=''">
+                invoice,
+            </if>
+            <if test="link!=null and link!=''">
+                link,
+            </if>
+            <if test="price!=null and price!=''">
+                price,
+            </if>
+            <if test="totalPrice!=null and totalPrice!=''">
+                total_price,
+            </if>
+            <if test="notes!=null and notes!=''">
+                notes,
+            </if>
+            <if test="createTime!=null">
+                create_time,
+            </if>
+            <if test="creatorId!=null and creatorId!=''">
+                creator_id
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+            <if test="materialId!=null and materialId!=''">
+                #{materialId},
+            </if>
+            <if test="parameter!=null and parameter!=''">
+                #{parameter},
+            </if>
+            <if test="counts!=null and counts!=''">
+                #{counts},
+            </if>
+            <if test="completeCounts!=null and completeCounts!=''">
+                #{completeCounts},
+            </if>
+            <if test="incompleteCounts!=null and incompleteCounts!=''">
+                #{incompleteCounts},
+            </if>
+            <if test="unit!=null and unit!=''">
+                #{unit},
+            </if>
+
+            <if test="freight!=null and freight!=''">
+                #{freight},
+            </if>
+            <if test="taxation!=null and taxation!=''">
+                #{taxation},
+            </if>
+            <if test="invoice!=null and invoice!=''">
+                #{invoice},
+            </if>
+            <if test="link!=null and link!=''">
+                #{link},
+            </if>
+            <if test="price!=null and price!=''">
+                #{price},
+            </if>
+            <if test="totalPrice!=null and totalPrice!=''">
+                #{totalPrice},
+            </if>
+            <if test="notes!=null and notes!=''">
+                #{notes},
+            </if>
+            <if test="createTime!=null">
+                #{createTime},
+            </if>
+            <if test="creatorId!=null and creatorId!=''">
+                #{creatorId}
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateMaterialPurchase" parameterType="MaterialPurchaseUpdateParam">
+        update material_purchase
+        <set>
+            <if test="materialId!=null and materialId!=''">
+                material_id= #{materialId},
+            </if>
+            <if test="parameter!=null and parameter!=''">
+                parameter=#{parameter},
+            </if>
+            <if test="counts!=null and counts!=''">
+                counts =#{counts},
+            </if>
+            <if test="completeCounts!=null and completeCounts!=''">
+                complete_counts =#{completeCounts},
+            </if>
+            <if test="incompleteCounts!=null and incompleteCounts!=''">
+                incomplete_counts= #{incompleteCounts},
+            </if>
+            <if test="unit!=null and unit!=''">
+                unit=#{unit},
+            </if>
+
+            <if test="freight!=null and freight!=''">
+                freight =#{freight},
+            </if>
+            <if test="taxation!=null and taxation!=''">
+                taxation = #{taxation},
+            </if>
+            <if test="invoice!=null and invoice!=''">
+                invoice= #{invoice},
+            </if>
+            <if test="link!=null and link!=''">
+                link= #{link},
+            </if>
+            <if test="price!=null and price!=''">
+                price =#{price},
+            </if>
+            <if test="totalPrice!=null and totalPrice!=''">
+                total_price =#{totalPrice},
+            </if>
+            <if test="notes!=null and notes!=''">
+                notes=#{notes}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <update id="deleteMaterialPurchase" parameterType="Long">
+        delete
+        from material_purchase
+        where id = #{id}
+    </update>
+</mapper>
+
