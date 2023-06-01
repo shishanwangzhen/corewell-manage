@@ -44,7 +44,7 @@ public enum ResultStatusCode {
     USER_TO_EXAMINE(30004, "账号审核中"),
     USER_ISEXIT(30005, "账号已申请，请正常登录"),
     TID_ISNOTEXIT(30006, "标签不在标签库,请先注册"),
-    ASSETCODE_ISEXIST(30007, "此载体编号已存在"),
+    MATERIAL_NAME_ISEXIST(30007, "物料名称已存在"),
     RFID_ISNOTZHUCE(30008, "标签未注册"),
     RFID_ISNOTBIND(30009, "标签未绑定"),
     RFID_ISRELIEVE(30012, "标签已解除"),

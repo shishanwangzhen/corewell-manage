@@ -1,5 +1,7 @@
 package com.corewell.corewellmanage.constants;
 
+import org.springframework.beans.factory.annotation.Value;
+
 /**
  * Created with IntelliJ IDEA.
  *
@@ -38,5 +40,9 @@ public class BaseConstants {
      * 南京农业学号正则表达式
      */
     public static final String REG_PATTERN_ACCOUNT = "^[0-9]*$";
+    /**
+     * 模板文件夹
+     */
+    public static final String TEMPLATE="template/";
 
 }
