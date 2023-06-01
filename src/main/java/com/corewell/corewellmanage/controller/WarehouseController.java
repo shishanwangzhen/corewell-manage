@@ -1,12 +1,14 @@
 package com.corewell.corewellmanage.controller;
 
+import com.corewell.corewellmanage.domain.Warehouse;
 import com.corewell.corewellmanage.domain.Project;
 import com.corewell.corewellmanage.domain.Warehouse;
-import com.corewell.corewellmanage.domain.request.WarehouseAddParam;
-import com.corewell.corewellmanage.domain.request.WarehouseParam;
-import com.corewell.corewellmanage.domain.request.WarehouseUpdateParam;
+import com.corewell.corewellmanage.domain.request.*;
+import com.corewell.corewellmanage.domain.response.WarehouseDTO;
 import com.corewell.corewellmanage.result.ResultMsg;
 import com.corewell.corewellmanage.service.WarehouseService;
+import com.corewell.corewellmanage.utils.PageUtil;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -15,6 +17,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -62,6 +67,21 @@ public class WarehouseController {
         return resultMsg;
     }
 
+    @ApiOperation(value = "分页查询仓库", response = Warehouse.class)
+    @PostMapping("selectWarehouse")
+    public ResultMsg selectWarehouse(@RequestBody WarehousePageParam warehousePageParam) {
+        PageUtil.setPageParams(warehousePageParam.getPageParam());
+        List<WarehouseDTO> list= warehouseService.selectWarehouse(warehousePageParam);
+        PageInfo<Warehouse> pageInfo = new PageInfo(list);
+        return ResultMsg.success(pageInfo);
+    }
+
+    @ApiOperation(value = "导出仓库")
+    @PostMapping("downloadWarehouse")
+    public ResultMsg downloadWarehouse(@RequestBody WarehouseParam warehouseParam, HttpServletResponse response) {
+        ResultMsg resultMsg = warehouseService.downloadWarehouse(warehouseParam,response);
+        return resultMsg;
+    }
 
 }
 

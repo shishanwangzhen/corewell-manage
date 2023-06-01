@@ -1,9 +1,10 @@
 package com.corewell.corewellmanage.dao;
 
 import com.corewell.corewellmanage.domain.Warehouse;
-import com.corewell.corewellmanage.domain.request.WarehouseAddParam;
-import com.corewell.corewellmanage.domain.request.WarehouseParam;
-import com.corewell.corewellmanage.domain.request.WarehouseUpdateParam;
+import com.corewell.corewellmanage.domain.request.*;
+import com.corewell.corewellmanage.domain.response.WarehouseDTO;
+import com.corewell.corewellmanage.domain.template.AccountTemplate;
+import com.corewell.corewellmanage.domain.template.WarehouseTemplate;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -48,5 +49,21 @@ public interface WarehouseDao {
      * @return
      */
     List<Warehouse> getWarehouse(WarehouseParam warehouseParam);
+
+    /**
+     * 获取项目分页列表
+     *
+     * @param warehouseParam
+     * @return
+     */
+    List<WarehouseDTO> selectWarehouse(WarehouseParam warehouseParam);
+
+    /**
+     * 获取仓库导出列表
+     *
+     * @param warehouseParam
+     * @return
+     */
+    List<WarehouseTemplate> downloadWarehouse(WarehouseParam warehouseParam);
 
 }

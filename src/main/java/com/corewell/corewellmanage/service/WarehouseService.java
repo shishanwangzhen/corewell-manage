@@ -1,10 +1,13 @@
 package com.corewell.corewellmanage.service;
 
 
-import com.corewell.corewellmanage.domain.request.WarehouseAddParam;
-import com.corewell.corewellmanage.domain.request.WarehouseParam;
-import com.corewell.corewellmanage.domain.request.WarehouseUpdateParam;
+import com.corewell.corewellmanage.domain.request.*;
+import com.corewell.corewellmanage.domain.response.ProjectDTO;
+import com.corewell.corewellmanage.domain.response.WarehouseDTO;
 import com.corewell.corewellmanage.result.ResultMsg;
+
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -46,5 +49,22 @@ public interface WarehouseService {
      * @return
      */
     ResultMsg getWarehouse(WarehouseParam warehouseParam);
+
+    /**
+     * 分页查询仓库
+     *
+     * @param warehousePageParam
+     * @return
+     */
+    List<WarehouseDTO> selectWarehouse(WarehousePageParam warehousePageParam);
+
+    /**
+     * 导出仓库
+     *
+     * @param warehouseParam
+     * @param response
+     * @return
+     */
+    ResultMsg downloadWarehouse(WarehouseParam warehouseParam, HttpServletResponse response);
 
 }

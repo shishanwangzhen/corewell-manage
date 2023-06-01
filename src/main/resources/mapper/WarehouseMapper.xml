@@ -27,6 +27,31 @@
         </if>
     </select>
 
+    <select id="selectWarehouse" parameterType="WarehouseParam" resultType="WarehouseDTO">
+        select w.id as id, w.name as name, w.address as address, a.name as manager,w.phone as phone,w.notes as notes,
+               w.creator_id as creatorId, w.create_time as createTime
+        from warehouse w left join account a on w.manager_id = a.id
+        where 1=1
+        <if test="id!=null and id!=''">
+            and w.id=#{id}
+        </if>
+        <if test="name!=null and name!=''">
+            and w.name like CONCAT('%' , #{name ,jdbcType=VARCHAR},'%')
+        </if>
+    </select>
+
+    <select id="downloadWarehouse" parameterType="WarehouseParam" resultType="WarehouseTemplate">
+        select w.name as name, w.address as address, a.name as manager,w.phone as phone,w.notes as notes
+        from warehouse w left join account a on w.manager_id = a.id
+        where 1=1
+        <if test="id!=null and id!=''">
+            and w.id=#{id}
+        </if>
+        <if test="name!=null and name!=''">
+            and w.name like CONCAT('%' , #{name ,jdbcType=VARCHAR},'%')
+        </if>
+    </select>
+
     <insert id="addWarehouse" parameterType="WarehouseAddParam">
         insert into warehouse
         <trim prefix="(" suffix=")" suffixOverrides=",">
