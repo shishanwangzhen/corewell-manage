@@ -71,7 +71,7 @@ public class AccountController {
     @PostMapping("selectAccounts")
     public ResultMsg selectAccounts(@RequestBody AccountPageParam accountPageParam) {
         PageUtil.setPageParams(accountPageParam.getPageParam());
-        List<Account> list= accountService.selectAccounts(accountPageParam);
+        List<Account> list = accountService.selectAccounts(accountPageParam);
         PageInfo<Account> pageInfo = new PageInfo(list);
         return ResultMsg.success(pageInfo);
     }
@@ -79,7 +79,7 @@ public class AccountController {
     @ApiOperation(value = "导出账号")
     @PostMapping("downloadAccount")
     public ResultMsg downloadAccount(@RequestBody AccountParam accountParam, HttpServletResponse response) {
-        ResultMsg resultMsg = accountService.downloadAccount(accountParam,response);
+        ResultMsg resultMsg = accountService.downloadAccount(accountParam, response);
         return resultMsg;
     }
 

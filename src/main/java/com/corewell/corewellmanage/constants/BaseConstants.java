@@ -1,7 +1,5 @@
 package com.corewell.corewellmanage.constants;
 
-import org.springframework.beans.factory.annotation.Value;
-
 /**
  * Created with IntelliJ IDEA.
  *
@@ -43,6 +41,6 @@ public class BaseConstants {
     /**
      * 模板文件夹
      */
-    public static final String TEMPLATE="template/";
+    public static final String TEMPLATE = "template/";
 
 }
