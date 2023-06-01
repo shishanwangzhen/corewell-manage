@@ -12,7 +12,7 @@
         <result property="createTime" column="create_time"/>
     </resultMap>
 
-    <select id="getNode" parameterType="NodeParam" resultType="Node">
+    <select id="getNode" parameterType="NodeParam" resultType="NodeDTO">
         select id, time, notes, project_id as projectId,creator_id as creatorId,
         create_time as createTime
         from node
@@ -67,23 +67,15 @@
     <update id="updateNode" parameterType="NodeUpdateParam">
         update node
         <set>
-            <if test="time!=null and time!=''">
+            <if test="time!=null">
                 time = #{time},
             </if>
-
             <if test="notes!=null and notes!=''">
                 notes =#{notes},
             </if>
             <if test="projectId!=null and projectId!=''">
                 project_id =#{projectId},
             </if>
-            <if test="createTime!=null">
-                create_time =#{createTime},
-            </if>
-            <if test="creatorId!=null and creatorId!=''">
-                creator_id =#{creatorId}
-            </if>
-
         </set>
         where id=#{id}
     </update>

@@ -51,4 +51,12 @@ public interface MaterialNameDao {
      */
     List<MaterialName> getMaterialName(MaterialNameParam materialNameParam);
 
+    /**
+     * 获取物料名称
+     *
+     * @param name
+     * @return
+     */
+    MaterialName getMaterialNameByName(String name);
+
 }

@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
 
 /**
  * @author Administrator
@@ -27,6 +26,11 @@ public class NodeParam {
    */
   @ApiModelProperty(value = "项目id", required = false, example = "")
   private Long projectId;
+  /**
+   * 创建者id
+   */
+  @ApiModelProperty(value = "创建者id", required = false, example = "")
+  private Long creatorId;
 
 
 }

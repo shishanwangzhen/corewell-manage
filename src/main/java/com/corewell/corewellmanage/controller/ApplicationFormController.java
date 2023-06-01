@@ -2,7 +2,10 @@ package com.corewell.corewellmanage.controller;
 
 import com.corewell.corewellmanage.domain.Account;
 import com.corewell.corewellmanage.domain.ApplicationForm;
-import com.corewell.corewellmanage.domain.request.*;
+import com.corewell.corewellmanage.domain.request.ApplicationFormAddParam;
+import com.corewell.corewellmanage.domain.request.ApplicationFormPageParam;
+import com.corewell.corewellmanage.domain.request.ApplicationFormParam;
+import com.corewell.corewellmanage.domain.request.ApplicationFormUpdateParam;
 import com.corewell.corewellmanage.result.ResultMsg;
 import com.corewell.corewellmanage.service.ApplicationFormService;
 import com.corewell.corewellmanage.utils.PageUtil;
@@ -68,7 +71,7 @@ public class ApplicationFormController {
     @PostMapping("selectApplicationForm")
     public ResultMsg selectApplicationForm(@RequestBody ApplicationFormPageParam applicationFormPageParam) {
         PageUtil.setPageParams(applicationFormPageParam.getPageParam());
-        List<ApplicationForm> list= applicationFormService.selectApplicationForm(applicationFormPageParam);
+        List<ApplicationForm> list = applicationFormService.selectApplicationForm(applicationFormPageParam);
         PageInfo<Account> pageInfo = new PageInfo(list);
         return ResultMsg.success(pageInfo);
     }

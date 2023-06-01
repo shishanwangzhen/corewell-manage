@@ -1,19 +1,27 @@
 package com.corewell.corewellmanage.controller;
 
+import com.alibaba.excel.EasyExcel;
+import com.corewell.corewellmanage.constants.BaseConstants;
 import com.corewell.corewellmanage.domain.MaterialApply;
 import com.corewell.corewellmanage.domain.request.MaterialApplyAddParam;
 import com.corewell.corewellmanage.domain.request.MaterialApplyParam;
 import com.corewell.corewellmanage.domain.request.MaterialApplyUpdateParam;
+import com.corewell.corewellmanage.domain.template.MaterialApplyTemplate;
 import com.corewell.corewellmanage.result.ResultMsg;
 import com.corewell.corewellmanage.service.MaterialApplyService;
+import com.corewell.corewellmanage.utils.FileUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedInputStream;
+import java.text.ParseException;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -27,6 +35,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/corewell/materialApply/")
 @Api(tags = "物料申请")
 public class MaterialApplyController {
+    /**
+     * 将 yml 中的自定义配置注入到这里
+     */
+    @Value("${gorit.file.root.path}")
+    private String filePath;
 
     @Autowired
     private MaterialApplyService materialApplyService;
@@ -61,6 +74,38 @@ public class MaterialApplyController {
         return resultMsg;
     }
 
+    @ApiOperation("物料申请批量导入")
+    @PostMapping("importMaterialApply")
+    public ResultMsg importMaterialApply(MultipartFile file) throws ParseException {
+        List<MaterialApplyTemplate> materialApplyTemplateList = null;
+        // 1.excel同步读取数据
+        try {
+            materialApplyTemplateList = EasyExcel.read(new BufferedInputStream(file.getInputStream())).head(MaterialApplyTemplate.class).sheet().doReadSync();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // 5.入库操作
+        for (int i = 0; i < materialApplyTemplateList.size(); i++) {
+            MaterialApplyTemplate materialApplyTemplate = materialApplyTemplateList.get(i);
+            materialApplyService.importMaterialApply(materialApplyTemplate);
+        }
+        return ResultMsg.success();
+
+    }
+
+    @ApiOperation("下载物料申请模板")
+    @PostMapping("downloadMaterialApply")
+    public ResultMsg downloadMaterialApply(@RequestParam("fileName") String fileName, HttpServletResponse response) {
+        try {
+            String path = filePath + BaseConstants.TEMPLATE + fileName;
+            FileUtils.download(path, response);
+            return ResultMsg.success();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultMsg.error();
+        }
+    }
 
 }
 

@@ -5,7 +5,7 @@
 <mapper namespace="com.corewell.corewellmanage.dao.MaterialNameDao">
     <resultMap id="MaterialNameMap" type="com.corewell.corewellmanage.domain.MaterialName">
         <id property="id" column="id"/>
-     
+
         <result property="name" column="name"/>
         <result property="number" column="number"/>
         <result property="path" column="path"/>
@@ -26,6 +26,10 @@
         <if test="name!=null and name!=''">
             and name like CONCAT('%' , #{name ,jdbcType=VARCHAR},'%')
         </if>
+    </select>
+
+    <select id="getMaterialNameByName" parameterType="String" resultType="MaterialName">
+        select id,name from material_name where name = #{name}
     </select>
 
     <insert id="addMaterialName" parameterType="MaterialNameAddParam">

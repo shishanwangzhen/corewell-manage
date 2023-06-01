@@ -6,6 +6,7 @@ import com.corewell.corewellmanage.domain.request.MaterialNameAddParam;
 import com.corewell.corewellmanage.domain.request.MaterialNameParam;
 import com.corewell.corewellmanage.domain.request.MaterialNameUpdateParam;
 import com.corewell.corewellmanage.result.ResultMsg;
+import com.corewell.corewellmanage.result.ResultStatusCode;
 import com.corewell.corewellmanage.service.MaterialNameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,10 @@ public class MaterialNameServiceImpl implements MaterialNameService {
     private MaterialNameDao materialNameDao;
     @Override
     public ResultMsg addMaterialName(MaterialNameAddParam materialNameAddParam) {
+        MaterialName materialName=materialNameDao.getMaterialNameByName(materialNameAddParam.getName());
+        if (materialName!=null){
+            return new ResultMsg(ResultStatusCode.MATERIAL_NAME_ISEXIST);
+        }
         materialNameAddParam.setCreateTime(new Date());
         int result=materialNameDao.addMaterialName(materialNameAddParam);
         return ResultMsg.success();

@@ -1,10 +1,10 @@
 package com.corewell.corewellmanage.service.impl;
 
 import com.corewell.corewellmanage.dao.NodeDao;
-import com.corewell.corewellmanage.domain.Node;
 import com.corewell.corewellmanage.domain.request.NodeAddParam;
 import com.corewell.corewellmanage.domain.request.NodeParam;
 import com.corewell.corewellmanage.domain.request.NodeUpdateParam;
+import com.corewell.corewellmanage.domain.response.NodeDTO;
 import com.corewell.corewellmanage.result.ResultMsg;
 import com.corewell.corewellmanage.service.NodeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +46,7 @@ public class NodeServiceImpl implements NodeService {
 
     @Override
     public ResultMsg getNode(NodeParam nodeParam) {
-        List<Node> list = nodeDao.getNode(nodeParam);
+        List<NodeDTO> list = nodeDao.getNode(nodeParam);
         return ResultMsg.success(list);
     }
 }

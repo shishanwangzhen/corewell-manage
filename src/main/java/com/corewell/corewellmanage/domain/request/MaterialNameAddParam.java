@@ -24,7 +24,7 @@ public class MaterialNameAddParam {
   /**
    * 主键id
    */
-  @ApiModelProperty(value = "主键id", required = false, example = "")
+  @ApiModelProperty(value = "主键id", required = true, example = "")
   private String number;
   /**
    * 图片地址
@@ -39,7 +39,7 @@ public class MaterialNameAddParam {
   /**
    * 物料类别
    */
-  @ApiModelProperty(value = "物料类别", required = false, example = "")
+  @ApiModelProperty(value = "物料类别", required = true, example = "")
   private String type;
   /**
    * 备注

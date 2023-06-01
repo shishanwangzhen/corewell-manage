@@ -1,14 +1,15 @@
 package com.corewell.corewellmanage.controller;
 
-import com.corewell.corewellmanage.domain.Node;
 import com.corewell.corewellmanage.domain.request.NodeAddParam;
 import com.corewell.corewellmanage.domain.request.NodeParam;
 import com.corewell.corewellmanage.domain.request.NodeUpdateParam;
+import com.corewell.corewellmanage.domain.response.NodeDTO;
 import com.corewell.corewellmanage.result.ResultMsg;
 import com.corewell.corewellmanage.service.NodeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/corewell/node/")
 @Api(tags = "节点")
+@Slf4j
 public class NodeController {
 
     @Autowired
@@ -34,6 +36,7 @@ public class NodeController {
     @ApiOperation(value = "添加节点")
     @PostMapping("addNode")
     public ResultMsg addNode(@RequestBody NodeAddParam nodeAddParam) {
+        log.info("添加节点入参：：：：nodeAddParam", nodeAddParam);
         ResultMsg resultMsg = nodeService.addNode(nodeAddParam);
         return resultMsg;
     }
@@ -42,6 +45,7 @@ public class NodeController {
     @ApiOperation("修改节点")
     @PostMapping("updateNode")
     public ResultMsg updateNode(@RequestBody NodeUpdateParam nodeUpdateParam) {
+        log.info("修改节点入参：：：：nodeUpdateParam{}", nodeUpdateParam);
         ResultMsg resultMsg = nodeService.updateNode(nodeUpdateParam);
         return resultMsg;
     }
@@ -54,12 +58,12 @@ public class NodeController {
         return resultMsg;
     }
 
-    @ApiOperation(value = "查询节点", response = Node.class)
+    @ApiOperation(value = "查询节点", response = NodeDTO.class)
     @PostMapping("getNode")
     public ResultMsg getNode(@RequestBody NodeParam nodeParam) {
         ResultMsg resultMsg = nodeService.getNode(nodeParam);
         return resultMsg;
     }
-    
+
 }
 

@@ -1,10 +1,13 @@
 package com.corewell.corewellmanage.service.impl;
 
 import com.corewell.corewellmanage.dao.MaterialApplyDao;
+import com.corewell.corewellmanage.dao.MaterialNameDao;
 import com.corewell.corewellmanage.domain.MaterialApply;
+import com.corewell.corewellmanage.domain.MaterialName;
 import com.corewell.corewellmanage.domain.request.MaterialApplyAddParam;
 import com.corewell.corewellmanage.domain.request.MaterialApplyParam;
 import com.corewell.corewellmanage.domain.request.MaterialApplyUpdateParam;
+import com.corewell.corewellmanage.domain.template.MaterialApplyTemplate;
 import com.corewell.corewellmanage.result.ResultMsg;
 import com.corewell.corewellmanage.service.MaterialApplyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +27,8 @@ import java.util.List;
 public class MaterialApplyServiceImpl implements MaterialApplyService {
     @Autowired
     private MaterialApplyDao materialApplyDao;
+    @Autowired
+    private MaterialNameDao materialNameDao;
     @Override
     public ResultMsg addMaterialApply(MaterialApplyAddParam materialApplyAddParam) {
         materialApplyAddParam.setCreateTime(new Date());
@@ -47,5 +52,33 @@ public class MaterialApplyServiceImpl implements MaterialApplyService {
     public ResultMsg getMaterialApply(MaterialApplyParam materialApplyParam) {
         List<MaterialApply> list=materialApplyDao.getMaterialApply(materialApplyParam);
         return ResultMsg.success(list);
+    }
+
+    @Override
+    public ResultMsg importMaterialApply(MaterialApplyTemplate materialApplyTemplate) {
+        MaterialApplyAddParam materialApplyAddParam=new MaterialApplyAddParam();
+        MaterialName materialName=materialNameDao.getMaterialNameByName(materialApplyTemplate.getMaterialName());
+        materialApplyAddParam.setMaterialId(materialName.getId());
+        if (materialApplyTemplate.getCounts()!=null){
+            materialApplyAddParam.setCounts(materialApplyTemplate.getCounts());
+        }
+        if (materialApplyTemplate.getFreight()!=null){
+            materialApplyAddParam.setFreight(materialApplyTemplate.getFreight());
+        }
+        if (materialApplyTemplate.getLink()!=null){
+            materialApplyAddParam.setLink(materialApplyTemplate.getLink());
+        }
+        if (materialApplyTemplate.getPrice()!=null){
+            materialApplyAddParam.setPrice(materialApplyTemplate.getPrice());
+        }
+        if (materialApplyTemplate.getNotes()!=null){
+            materialApplyAddParam.setNotes(materialApplyTemplate.getNotes());
+        }
+        if (materialApplyTemplate.getUnit()!=null){
+            materialApplyAddParam.setUnit(materialApplyTemplate.getUnit());
+        }
+        materialApplyAddParam.setCreateTime(new Date());
+        int result=materialApplyDao.addMaterialApply(materialApplyAddParam);
+        return ResultMsg.success();
     }
 }

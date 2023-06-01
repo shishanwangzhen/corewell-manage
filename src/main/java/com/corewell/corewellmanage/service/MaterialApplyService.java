@@ -4,6 +4,7 @@ package com.corewell.corewellmanage.service;
 import com.corewell.corewellmanage.domain.request.MaterialApplyAddParam;
 import com.corewell.corewellmanage.domain.request.MaterialApplyParam;
 import com.corewell.corewellmanage.domain.request.MaterialApplyUpdateParam;
+import com.corewell.corewellmanage.domain.template.MaterialApplyTemplate;
 import com.corewell.corewellmanage.result.ResultMsg;
 
 /**
@@ -46,5 +47,15 @@ public interface MaterialApplyService {
      * @return
      */
     ResultMsg getMaterialApply(MaterialApplyParam materialApplyParam);
+
+    /**
+     * 添加物料申请
+     *
+     * @param materialApplyTemplate
+     * @return
+     */
+    ResultMsg importMaterialApply(MaterialApplyTemplate materialApplyTemplate);
+
+
 
 }

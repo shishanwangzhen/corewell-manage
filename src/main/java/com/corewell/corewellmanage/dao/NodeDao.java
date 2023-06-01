@@ -4,6 +4,7 @@ import com.corewell.corewellmanage.domain.Node;
 import com.corewell.corewellmanage.domain.request.NodeAddParam;
 import com.corewell.corewellmanage.domain.request.NodeParam;
 import com.corewell.corewellmanage.domain.request.NodeUpdateParam;
+import com.corewell.corewellmanage.domain.response.NodeDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -47,6 +48,6 @@ public interface NodeDao {
      * @param nodeParam
      * @return
      */
-    List<Node> getNode(NodeParam nodeParam);
+    List<NodeDTO> getNode(NodeParam nodeParam);
 
 }
