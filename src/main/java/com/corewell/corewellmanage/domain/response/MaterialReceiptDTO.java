@@ -45,7 +45,7 @@ public class MaterialReceiptDTO {
    * 数量
    */
   @ApiModelProperty(value = "数量", required = false, example = "")
-  private String counts;
+  private Long counts;
   /**
    * 单位
    */

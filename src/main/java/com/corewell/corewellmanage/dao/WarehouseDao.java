@@ -53,10 +53,10 @@ public interface WarehouseDao {
     /**
      * 获取项目分页列表
      *
-     * @param warehouseParam
+     * @param warehousePageParam
      * @return
      */
-    List<WarehouseDTO> selectWarehouse(WarehouseParam warehouseParam);
+    List<WarehouseDTO> selectWarehouse(WarehousePageParam warehousePageParam);
 
     /**
      * 获取仓库导出列表

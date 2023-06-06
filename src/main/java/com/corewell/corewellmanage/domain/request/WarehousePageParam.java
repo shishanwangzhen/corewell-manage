@@ -16,11 +16,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class WarehousePageParam {
   /**
-   * 主键id
-   */
-  @ApiModelProperty(value = "主键id", required = false, example = "")
-  private Long id;
-  /**
    * 仓库名称
    */
   @ApiModelProperty(value = "仓库名称", required = false, example = "")

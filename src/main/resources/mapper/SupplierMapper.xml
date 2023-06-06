@@ -34,7 +34,6 @@
     <insert id="addSupplier" parameterType="SupplierAddParam">
         insert into supplier
         <trim prefix="(" suffix=")" suffixOverrides=",">
-
             <if test="name!=null and name!=''">
                 name,
             </if>

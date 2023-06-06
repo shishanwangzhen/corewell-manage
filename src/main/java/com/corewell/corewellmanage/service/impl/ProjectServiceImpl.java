@@ -30,7 +30,8 @@ import java.util.List;
 @Slf4j
 public class ProjectServiceImpl implements ProjectService {
 
-    private static final String fileName = "项目列表";
+    private static final String fileName = "项目列表.xlsx";
+    private static final String sheetName="项目列表";
     @Autowired
     private ProjectDao projectDao;
 
@@ -75,7 +76,7 @@ public class ProjectServiceImpl implements ProjectService {
         log.info("downloadProject:  projectParam:  " + JSON.toJSONString(projectParam));
         List<ProjectTemplate> list = projectDao.downloadProject(projectParam);
         try {
-            ExcelUtil.writeExcel(response, list, fileName, fileName, ProjectTemplate.class);
+            ExcelUtil.writeExcel(response, list, fileName, sheetName, ProjectTemplate.class);
         } catch (Exception e) {
             e.printStackTrace();
         }

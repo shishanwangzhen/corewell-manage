@@ -27,7 +27,9 @@ import java.util.List;
 @Service("WarehouseService")
 @Slf4j
 public class WarehouseServiceImpl implements WarehouseService {
-    private static final String fileName = "仓库列表";
+    private static final String fileName = "仓库列表.xlsx";
+    private static final String sheetName="仓库列表";
+
     @Autowired
     private WarehouseDao warehouseDao;
 
@@ -60,11 +62,7 @@ public class WarehouseServiceImpl implements WarehouseService {
     @Override
     public List<WarehouseDTO> selectWarehouse(WarehousePageParam warehousePageParam) {
         log.info("selectAccounts:  accountParam:  " + JSON.toJSONString(warehousePageParam));
-        WarehouseParam warehouseParam = new WarehouseParam();
-        warehouseParam.setManagerId(warehousePageParam.getManagerId());
-        warehouseParam.setCreatorId(warehousePageParam.getCreatorId());
-        warehouseParam.setName(warehousePageParam.getName());
-        List<WarehouseDTO> result = warehouseDao.selectWarehouse(warehouseParam);
+        List<WarehouseDTO> result = warehouseDao.selectWarehouse(warehousePageParam);
         return result;
     }
 
@@ -73,7 +71,7 @@ public class WarehouseServiceImpl implements WarehouseService {
         log.info("downloadWarehouse:  warehouseParam:  " + JSON.toJSONString(warehouseParam));
         List<WarehouseTemplate> list = warehouseDao.downloadWarehouse(warehouseParam);
         try {
-            ExcelUtil.writeExcel(response, list, fileName, fileName, WarehouseTemplate.class);
+            ExcelUtil.writeExcel(response, list, fileName, sheetName, WarehouseTemplate.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
