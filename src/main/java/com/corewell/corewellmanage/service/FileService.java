@@ -3,9 +3,13 @@ package com.corewell.corewellmanage.service;
 
 import com.corewell.corewellmanage.domain.Files;
 import com.corewell.corewellmanage.domain.request.FileAddParam;
+import com.corewell.corewellmanage.domain.request.FilePageParam;
 import com.corewell.corewellmanage.domain.request.FileParam;
 import com.corewell.corewellmanage.domain.request.FileUpdateParam;
+import com.corewell.corewellmanage.domain.response.FilesDTO;
 import com.corewell.corewellmanage.result.ResultMsg;
+
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -55,6 +59,14 @@ public interface FileService {
      * @return
      */
     Files getFileById(Long id);
+
+    /**
+     * 通过id查询文件
+     *
+     * @param filePageParam
+     * @return
+     */
+    List<FilesDTO> selectFile(FilePageParam filePageParam);
 
 
 }

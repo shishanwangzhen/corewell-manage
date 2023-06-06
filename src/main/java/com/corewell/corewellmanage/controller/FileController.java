@@ -1,13 +1,15 @@
 package com.corewell.corewellmanage.controller;
 
 import com.corewell.corewellmanage.config.UserRequest;
+import com.corewell.corewellmanage.domain.Account;
 import com.corewell.corewellmanage.domain.Files;
-import com.corewell.corewellmanage.domain.request.FileAddParam;
-import com.corewell.corewellmanage.domain.request.FileParam;
-import com.corewell.corewellmanage.domain.request.FileUpdateParam;
+import com.corewell.corewellmanage.domain.request.*;
+import com.corewell.corewellmanage.domain.response.FilesDTO;
 import com.corewell.corewellmanage.result.ResultMsg;
 import com.corewell.corewellmanage.service.FileService;
 import com.corewell.corewellmanage.utils.JwtUtil;
+import com.corewell.corewellmanage.utils.PageUtil;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.io.IOUtils;
@@ -27,6 +29,7 @@ import java.net.URLEncoder;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -78,11 +81,20 @@ public class FileController {
         return resultMsg;
     }
 
-    @ApiOperation(value = "查询文件", response = Files.class)
+    @ApiOperation(value = "查询文件", response = FilesDTO.class)
     @PostMapping("getFile")
     public ResultMsg getFile(@RequestBody FileParam fileParam) {
         ResultMsg resultMsg = fileService.getFile(fileParam);
         return resultMsg;
+    }
+
+    @ApiOperation(value = "分页查询文件", response = FilesDTO.class)
+    @PostMapping("selectFile")
+    public ResultMsg selectFile(@RequestBody FilePageParam filePageParam) {
+        PageUtil.setPageParams(filePageParam.getPageParam());
+        List<FilesDTO> list = fileService.selectFile(filePageParam);
+        PageInfo<Account> pageInfo = new PageInfo(list);
+        return ResultMsg.success(pageInfo);
     }
 
 

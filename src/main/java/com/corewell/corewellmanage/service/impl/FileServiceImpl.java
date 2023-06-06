@@ -1,11 +1,11 @@
 package com.corewell.corewellmanage.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.corewell.corewellmanage.dao.FileDao;
 import com.corewell.corewellmanage.domain.Files;
-import com.corewell.corewellmanage.domain.request.FileAddParam;
-import com.corewell.corewellmanage.domain.request.FileParam;
-import com.corewell.corewellmanage.domain.request.FileUpdateParam;
+import com.corewell.corewellmanage.domain.request.*;
+import com.corewell.corewellmanage.domain.response.FilesDTO;
 import com.corewell.corewellmanage.result.ResultMsg;
 import com.corewell.corewellmanage.service.FileService;
 import lombok.extern.slf4j.Slf4j;
@@ -51,8 +51,8 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public ResultMsg getFile(FileParam fileParam) {
-        log.info("getAccount:  accountParam:  " + JSON.toJSONString(fileParam));
-        List<Files> result=fileDao.getFile(fileParam);
+        log.info("getFile:  FileParam:  " + JSON.toJSONString(fileParam));
+        List<FilesDTO> result=fileDao.getFile(fileParam);
         return ResultMsg.success(result);
     }
 
@@ -60,4 +60,12 @@ public class FileServiceImpl implements FileService {
     public Files getFileById(Long id) {
         return fileDao.getFileById(id);
     }
+    @Override
+    public List<FilesDTO> selectFile(FilePageParam filePageParam) {
+        log.info("selectFile:  fileParam:  " + JSON.toJSONString(filePageParam));
+        FileParam fileParam = JSONObject.parseObject(filePageParam.toString(), FileParam.class);
+        List<FilesDTO> result = fileDao.selectFile(filePageParam);
+        return result;
+    }
+
 }

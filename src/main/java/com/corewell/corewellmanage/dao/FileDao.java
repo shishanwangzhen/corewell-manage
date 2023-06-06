@@ -2,8 +2,10 @@ package com.corewell.corewellmanage.dao;
 
 import com.corewell.corewellmanage.domain.Files;
 import com.corewell.corewellmanage.domain.request.FileAddParam;
+import com.corewell.corewellmanage.domain.request.FilePageParam;
 import com.corewell.corewellmanage.domain.request.FileParam;
 import com.corewell.corewellmanage.domain.request.FileUpdateParam;
+import com.corewell.corewellmanage.domain.response.FilesDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -47,7 +49,7 @@ public interface FileDao {
      * @param fileParam
      * @return
      */
-    List<Files> getFile(FileParam fileParam);
+    List<FilesDTO> getFile(FileParam fileParam);
 
 
     /**
@@ -57,5 +59,13 @@ public interface FileDao {
      * @return
      */
     Files getFileById(Long id);
+
+    /**
+     * 通过id查询文件
+     *
+     * @param filePageParam
+     * @return
+     */
+    List<FilesDTO> selectFile(FilePageParam filePageParam);
 
 }

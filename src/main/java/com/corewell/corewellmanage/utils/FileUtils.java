@@ -141,7 +141,7 @@ public class FileUtils {
      */
     public static void getFile(String openStyle,String path, HttpServletResponse response) throws Exception {
         log.info("文件路径URL  path::::{}",path);
-        String fileName=path.contains(BaseConstants.TEMPLATE)?path.substring(path.indexOf("template/")+9):path.substring(path.indexOf("-")+8);
+        String fileName=path.contains(BaseConstants.TEMPLATE)?path.substring(path.indexOf(BaseConstants.TEMPLATE)+9):path.substring(path.indexOf("-")+8);
         log.info("文件名fileName::::{}",fileName);
         FileInputStream is = new FileInputStream(new File(path));
         // 附件下载

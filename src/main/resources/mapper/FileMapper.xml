@@ -13,16 +13,42 @@
         <result property="createTime" column="create_time"/>
     </resultMap>
 
-    <select id="getFile" parameterType="FileParam" resultType="Files">
-        select id, name,path, notes, project_id as projectId,creator_id as creatorId,
-        create_time as createTime
-        from files
+    <select id="getFile" parameterType="FileParam" resultType="FilesDTO">
+        select f.id as id,
+        f.name as name,
+        f.path as path,
+        f.notes as notes,
+        f.project_id as projectId,
+        p.name as projectName,
+        f.creator_id as creatorId,
+        f.create_time as createTime
+        from files f left join project p on f.project_id = p.id
         where 1=1
         <if test="id!=null and id!=''">
-            and id=#{id}
+            and f.id=#{id}
         </if>
         <if test="name!=null and name!=''">
-            and name like CONCAT('%' , #{name ,jdbcType=VARCHAR},'%')
+            and f.name like CONCAT('%' , #{name ,jdbcType=VARCHAR},'%')
+        </if>
+        order by create_time desc
+    </select>
+
+    <select id="selectFile" parameterType="FilePageParam" resultType="FilesDTO">
+        select f.id as id,
+        f.name as name,
+        f.path as path,
+        f.notes as notes,
+        f.project_id as projectId,
+        p.name as projectName,
+        f.creator_id as creatorId,
+        f.create_time as createTime
+        from files f left join project p on f.project_id = p.id
+        where 1=1
+        <if test="projectId!=null and projectId!=''">
+            and f.project_id=#{projectId}
+        </if>
+        <if test="name!=null and name!=''">
+            and f.name like CONCAT('%' , #{name ,jdbcType=VARCHAR},'%')
         </if>
         order by create_time desc
     </select>
