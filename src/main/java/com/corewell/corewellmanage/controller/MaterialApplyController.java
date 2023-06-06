@@ -2,14 +2,15 @@ package com.corewell.corewellmanage.controller;
 
 import com.alibaba.excel.EasyExcel;
 import com.corewell.corewellmanage.constants.BaseConstants;
-import com.corewell.corewellmanage.domain.MaterialApply;
-import com.corewell.corewellmanage.domain.request.MaterialApplyAddParam;
-import com.corewell.corewellmanage.domain.request.MaterialApplyParam;
-import com.corewell.corewellmanage.domain.request.MaterialApplyUpdateParam;
+import com.corewell.corewellmanage.domain.Account;
+import com.corewell.corewellmanage.domain.request.*;
+import com.corewell.corewellmanage.domain.response.MaterialApplyDTO;
 import com.corewell.corewellmanage.domain.template.MaterialApplyTemplate;
 import com.corewell.corewellmanage.result.ResultMsg;
 import com.corewell.corewellmanage.service.MaterialApplyService;
 import com.corewell.corewellmanage.utils.FileUtils;
+import com.corewell.corewellmanage.utils.PageUtil;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -67,13 +68,20 @@ public class MaterialApplyController {
         return resultMsg;
     }
 
-    @ApiOperation(value = "查询物料申请", response = MaterialApply.class)
+    @ApiOperation(value = "查询物料申请", response = MaterialApplyDTO.class)
     @PostMapping("getMaterialApply")
     public ResultMsg getMaterialApply(@RequestBody MaterialApplyParam materialApplyParam) {
         ResultMsg resultMsg = materialApplyService.getMaterialApply(materialApplyParam);
         return resultMsg;
     }
-
+    @ApiOperation(value = "分页查询文件", response = MaterialApplyDTO.class)
+    @PostMapping("selectMaterialApply")
+    public ResultMsg selectMaterialApply(@RequestBody MaterialApplyPageParam materialApplyPageParam) {
+        PageUtil.setPageParams(materialApplyPageParam.getPageParam());
+        List<MaterialApplyDTO> list = materialApplyService.selectMaterialApply(materialApplyPageParam);
+        PageInfo<Account> pageInfo = new PageInfo(list);
+        return ResultMsg.success(pageInfo);
+    }
     @ApiOperation("物料申请批量导入")
     @PostMapping("importMaterialApply")
     public ResultMsg importMaterialApply(MultipartFile file) throws ParseException {
@@ -95,7 +103,7 @@ public class MaterialApplyController {
     }
 
     @ApiOperation("下载物料申请模板")
-    @PostMapping("downloadMaterialApply")
+    @GetMapping("downloadMaterialApply")
     public ResultMsg downloadMaterialApply(@RequestParam("fileName") String fileName, HttpServletResponse response) {
         try {
             String path = filePath + BaseConstants.TEMPLATE + fileName;

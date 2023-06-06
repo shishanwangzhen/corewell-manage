@@ -45,7 +45,7 @@ public class MaterialApplyTemplate {
     @ApiModelProperty(value = "数量", required = false, example = "")
     @ExcelProperty(value = "数量", index = 3)
     @ColumnWidth(value = 15)
-    private String counts;
+    private Long counts;
     /**
      * 单位
      */

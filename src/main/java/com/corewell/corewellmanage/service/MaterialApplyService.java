@@ -2,10 +2,14 @@ package com.corewell.corewellmanage.service;
 
 
 import com.corewell.corewellmanage.domain.request.MaterialApplyAddParam;
+import com.corewell.corewellmanage.domain.request.MaterialApplyPageParam;
 import com.corewell.corewellmanage.domain.request.MaterialApplyParam;
 import com.corewell.corewellmanage.domain.request.MaterialApplyUpdateParam;
+import com.corewell.corewellmanage.domain.response.MaterialApplyDTO;
 import com.corewell.corewellmanage.domain.template.MaterialApplyTemplate;
 import com.corewell.corewellmanage.result.ResultMsg;
+
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -56,6 +60,12 @@ public interface MaterialApplyService {
      */
     ResultMsg importMaterialApply(MaterialApplyTemplate materialApplyTemplate);
 
-
+    /**
+     * 分页获取物料申请列表
+     *
+     * @param materialApplyPageParam
+     * @return
+     */
+    List<MaterialApplyDTO> selectMaterialApply(MaterialApplyPageParam materialApplyPageParam);
 
 }

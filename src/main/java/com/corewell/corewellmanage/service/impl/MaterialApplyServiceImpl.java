@@ -1,15 +1,16 @@
 package com.corewell.corewellmanage.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.corewell.corewellmanage.dao.MaterialApplyDao;
 import com.corewell.corewellmanage.dao.MaterialNameDao;
 import com.corewell.corewellmanage.domain.MaterialApply;
 import com.corewell.corewellmanage.domain.MaterialName;
-import com.corewell.corewellmanage.domain.request.MaterialApplyAddParam;
-import com.corewell.corewellmanage.domain.request.MaterialApplyParam;
-import com.corewell.corewellmanage.domain.request.MaterialApplyUpdateParam;
+import com.corewell.corewellmanage.domain.request.*;
+import com.corewell.corewellmanage.domain.response.MaterialApplyDTO;
 import com.corewell.corewellmanage.domain.template.MaterialApplyTemplate;
 import com.corewell.corewellmanage.result.ResultMsg;
 import com.corewell.corewellmanage.service.MaterialApplyService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,7 @@ import java.util.List;
  * @Description:
  */
 @Service("MaterialApplyService")
+@Slf4j
 public class MaterialApplyServiceImpl implements MaterialApplyService {
     @Autowired
     private MaterialApplyDao materialApplyDao;
@@ -80,5 +82,12 @@ public class MaterialApplyServiceImpl implements MaterialApplyService {
         materialApplyAddParam.setCreateTime(new Date());
         int result=materialApplyDao.addMaterialApply(materialApplyAddParam);
         return ResultMsg.success();
+    }
+
+    @Override
+    public List<MaterialApplyDTO> selectMaterialApply(MaterialApplyPageParam materialApplyPageParam) {
+        log.info("selectMaterialApply:  materialApplyParam:  " + JSON.toJSONString(materialApplyPageParam));
+        List<MaterialApplyDTO> result = materialApplyDao.selectMaterialApply(materialApplyPageParam);
+        return result;
     }
 }

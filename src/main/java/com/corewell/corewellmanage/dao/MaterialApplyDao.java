@@ -3,8 +3,10 @@ package com.corewell.corewellmanage.dao;
 
 import com.corewell.corewellmanage.domain.MaterialApply;
 import com.corewell.corewellmanage.domain.request.MaterialApplyAddParam;
+import com.corewell.corewellmanage.domain.request.MaterialApplyPageParam;
 import com.corewell.corewellmanage.domain.request.MaterialApplyParam;
 import com.corewell.corewellmanage.domain.request.MaterialApplyUpdateParam;
+import com.corewell.corewellmanage.domain.response.MaterialApplyDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -50,5 +52,13 @@ public interface MaterialApplyDao {
      * @return
      */
     List<MaterialApply> getMaterialApply(MaterialApplyParam materialApplyParam);
+
+    /**
+     * 分页获取物料申请列表
+     *
+     * @param materialApplyPageParam
+     * @return
+     */
+    List<MaterialApplyDTO> selectMaterialApply(MaterialApplyPageParam materialApplyPageParam);
 
 }

@@ -32,6 +32,16 @@ public class MaterialApplyDTO {
   @ApiModelProperty(value = "物料名称id", required = false, example = "")
   private Long materialId;
   /**
+   * 物料名称
+   */
+  @ApiModelProperty(value = "物料名称", required = false, example = "")
+  private Long materialName;
+  /**
+   * 物料类型
+   */
+  @ApiModelProperty(value = "物料类型", required = false, example = "")
+  private Long materialType;
+  /**
    * 规格参数
    */
   @ApiModelProperty(value = "规格参数", required = false, example = "")
@@ -40,7 +50,7 @@ public class MaterialApplyDTO {
    * 数量
    */
   @ApiModelProperty(value = "数量", required = false, example = "")
-  private String counts;
+  private Long counts;
   /**
    * 单位
    */

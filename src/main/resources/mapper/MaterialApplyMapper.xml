@@ -18,16 +18,61 @@
         <result property="createTime" column="create_time"/>
     </resultMap>
 
-    <select id="getMaterialApply" parameterType="MaterialApplyParam" resultType="MaterialApply">
-        select id,application_form_id as applicationFormId, material_id as materialId, parameter, counts, unit ,
-        price, freight,link,notes,creator_id as creatorId, create_time as createTime
-        from material_apply
+    <select id="getMaterialApply" parameterType="MaterialApplyParam" resultType="MaterialApplyDTO">
+        select a.id as id,
+        a.application_form_id as applicationFormId,
+        a.material_id as materialId,
+        mn.name as materialName,
+        mn.type as materialType,
+        a.parameter as parameter, a.counts as counts, a.unit as unit ,
+        a.price as price,
+        a.freight as freight,
+        a.link as link,
+        a.notes as notes,
+        a.creator_id as creatorId,
+        a.create_time as createTime
+        from material_apply a left join material_name mn on a.material_id = mn.id
         where 1=1
         <if test="id!=null and id!=''">
-            and id=#{id}
+            and a.id=#{id}
         </if>
-
+        <if test="applicationFormId!=null and applicationFormId!=''">
+            and a.application_form_id=#{applicationFormId}
+        </if>
+        <if test="materialId!=null and materialId!=''">
+            and a.material_id=#{materialId}
+        </if>
+        <if test="creatorId!=null and creatorId!=''">
+            and a.creator_id=#{creatorId}
+        </if>
     </select>
+
+    <select id="selectMaterialApply" parameterType="MaterialApplyPageParam" resultType="MaterialApplyDTO">
+        select a.id as id,
+        a.application_form_id as applicationFormId,
+        a.material_id as materialId,
+        mn.name as materialName,
+        mn.type as materialType,
+        a.parameter as parameter, a.counts as counts, a.unit as unit ,
+        a.price as price,
+        a.freight as freight,
+        a.link as link,
+        a.notes as notes,
+        a.creator_id as creatorId,
+        a.create_time as createTime
+        from material_apply a left join material_name mn on a.material_id = mn.id
+        where 1=1
+        <if test="applicationFormId!=null and applicationFormId!=''">
+            and a.application_form_id=#{applicationFormId}
+        </if>
+        <if test="materialId!=null and materialId!=''">
+            and a.material_id=#{materialId}
+        </if>
+        <if test="creatorId!=null and creatorId!=''">
+            and a.creator_id=#{creatorId}
+        </if>
+    </select>
+
 
     <insert id="addMaterialApply" parameterType="MaterialApplyAddParam">
         insert into material_apply
