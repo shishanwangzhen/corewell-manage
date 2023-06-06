@@ -17,17 +17,98 @@
         <result property="createTime" column="create_time"/>
     </resultMap>
 
-    <select id="getApplicationForm" parameterType="ApplicationFormParam" resultType="ApplicationForm">
-        select id,number,project_id as projectId, warehouse_id as warehouseId, manager_id as managerId,
-        finance_id as financeId, status ,notes,creator_id as creatorId, create_time as createTime
-        from application_form
+    <select id="getApplicationForm" parameterType="ApplicationFormParam" resultType="ApplicationFormDTO">
+        select a.id as id,
+        a.number as number,
+        a.project_id as projectId,
+        p.name as projectName,
+        a.warehouse_id as warehouseId,
+        w.name as warehouseName,
+        a.manager_id as managerId,
+        a2.name as manager,
+        a.finance_id as financeId,
+        a3.name as finance,
+        a.total_amount as totalAmount ,
+        a.status as status ,
+        a.notes as notes,
+        a.creator_id as creatorId,
+        a.create_time as createTime
+        from application_form a
+        left join project p on a.project_id = p.id
+        left join warehouse w on a.warehouse_id = w.id
+        left join account a2 on a.manager_id=a2.id
+        left join account a3 on a.finance_id=a3.id
         where 1=1
         <if test="id!=null and id!=''">
-            and id=#{id}
+            and a.id=#{id}
         </if>
-        <if test="name!=null and name!=''">
-            and name like CONCAT('%' , #{name ,jdbcType=VARCHAR},'%')
+        <if test="number!=null and number!=''">
+            and a.number=#{number}
         </if>
+        <if test="projectId!=null and projectId!=''">
+            and a.project_id=#{projectId}
+        </if>
+        <if test="warehouseId!=null and warehouseId!=''">
+            and a.warehouse_id=#{warehouseId}
+        </if>
+        <if test="managerId!=null and managerId!=''">
+            and a.manager_id=#{managerId}
+        </if>
+        <if test="id!=null and id!=''">
+            and a.finance_id=#{financeId}
+        </if>
+        <if test="status!=null and status!=''">
+            and a.status=#{status}
+        </if>
+        <if test="creatorId!=null and creatorId!=''">
+            and a.creator_id=#{creatorId}
+        </if>
+        <!-- <if test="name!=null and name!=''">
+             and name like CONCAT('%' , #{name ,jdbcType=VARCHAR},'%')
+         </if>-->
+    </select>
+
+    <select id="selectApplicationForm" parameterType="ApplicationFormPageParam" resultType="ApplicationFormDTO">
+        select a.id as id,
+        a.number as number,
+        a.project_id as projectId,
+        p.name as projectName,
+        a.warehouse_id as warehouseId,
+        w.name as warehouseName,
+        a.manager_id as managerId,
+        a2.name as manager,
+        a.finance_id as financeId,
+        a3.name as finance,
+        a.total_amount as totalAmount ,
+        a.status as status ,
+        a.notes as notes,
+        a.creator_id as creatorId,
+        a.create_time as createTime
+        from application_form a
+        left join project p on a.project_id = p.id
+        left join warehouse w on a.warehouse_id = w.id
+        left join account a2 on a.manager_id=a2.id
+        left join account a3 on a.finance_id=a3.id
+        where 1=1
+        <if test="projectId!=null and projectId!=''">
+            and a.project_id=#{projectId}
+        </if>
+        <if test="warehouseId!=null and warehouseId!=''">
+            and a.warehouse_id=#{warehouseId}
+        </if>
+        <if test="managerId!=null and managerId!=''">
+            and a.manager_id=#{managerId}
+        </if>
+        <if test="financeId!=null and financeId!=''">
+            and a.finance_id=#{financeId}
+        </if>
+        <if test="status!=null and status!=''">
+            and a.status=#{status}
+        </if>
+        <if test="creatorId!=null and creatorId!=''">
+            and a.creator_id=#{creatorId}
+        </if>
+
     </select>
 
     <insert id="addApplicationForm" parameterType="ApplicationFormAddParam">
@@ -40,7 +121,6 @@
             <if test="projectId!=null and projectId!=''">
                 project_id,
             </if>
-
             <if test="warehouseId!=null and warehouseId!=''">
                 warehouse_id,
             </if>

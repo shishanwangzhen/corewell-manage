@@ -1,11 +1,10 @@
 package com.corewell.corewellmanage.controller;
 
-import com.corewell.corewellmanage.domain.Account;
-import com.corewell.corewellmanage.domain.ApplicationForm;
 import com.corewell.corewellmanage.domain.request.ApplicationFormAddParam;
 import com.corewell.corewellmanage.domain.request.ApplicationFormPageParam;
 import com.corewell.corewellmanage.domain.request.ApplicationFormParam;
 import com.corewell.corewellmanage.domain.request.ApplicationFormUpdateParam;
+import com.corewell.corewellmanage.domain.response.ApplicationFormDTO;
 import com.corewell.corewellmanage.result.ResultMsg;
 import com.corewell.corewellmanage.service.ApplicationFormService;
 import com.corewell.corewellmanage.utils.PageUtil;
@@ -60,19 +59,19 @@ public class ApplicationFormController {
         return resultMsg;
     }
 
-    @ApiOperation(value = "查询提单申请", response = ApplicationForm.class)
+    @ApiOperation(value = "查询提单申请", response = ApplicationFormDTO.class)
     @PostMapping("getApplicationForm")
     public ResultMsg getApplicationForm(@RequestBody ApplicationFormParam applicationFormParam) {
         ResultMsg resultMsg = applicationFormService.getApplicationForm(applicationFormParam);
         return resultMsg;
     }
 
-    @ApiOperation(value = "分页查询提单申请", response = ApplicationForm.class)
+    @ApiOperation(value = "分页查询提单申请", response = ApplicationFormDTO.class)
     @PostMapping("selectApplicationForm")
     public ResultMsg selectApplicationForm(@RequestBody ApplicationFormPageParam applicationFormPageParam) {
         PageUtil.setPageParams(applicationFormPageParam.getPageParam());
-        List<ApplicationForm> list = applicationFormService.selectApplicationForm(applicationFormPageParam);
-        PageInfo<Account> pageInfo = new PageInfo(list);
+        List<ApplicationFormDTO> list = applicationFormService.selectApplicationForm(applicationFormPageParam);
+        PageInfo<ApplicationFormDTO> pageInfo = new PageInfo(list);
         return ResultMsg.success(pageInfo);
     }
 

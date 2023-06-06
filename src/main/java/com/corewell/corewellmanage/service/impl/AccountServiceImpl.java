@@ -37,7 +37,8 @@ import java.util.Map;
 public class AccountServiceImpl implements AccountService {
 
 
-    private static final String fileName="用户列表";
+    private static final String fileName="用户列表.xlsx";
+    private static final String sheetName="用户列表";
     @Autowired
     private AccountDao accountDao;
 
@@ -118,10 +119,10 @@ public class AccountServiceImpl implements AccountService {
 
         }
         try {
-            ExcelUtil.writeExcel(response, list, fileName, fileName, AccountTemplate.class);
+            ExcelUtil.writeExcel(response, list, fileName, sheetName, AccountTemplate.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return ResultMsg.success();
+        return ResultMsg.success(fileName);
     }
 }

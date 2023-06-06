@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -35,7 +36,7 @@ public class ApplicationFormDTO {
    * 项目名称
    */
   @ApiModelProperty(value = "项目名称", required = false, example = "")
-  private Long projectName;
+  private String projectName;
   /**
    * 仓库id
    */
@@ -45,7 +46,7 @@ public class ApplicationFormDTO {
    * 仓库名称
    */
   @ApiModelProperty(value = "仓库名称", required = false, example = "")
-  private Long warehouseName;
+  private String warehouseName;
   /**
    * 项目经理id
    */
@@ -55,7 +56,7 @@ public class ApplicationFormDTO {
    * 项目经理
    */
   @ApiModelProperty(value = "项目经理", required = false, example = "")
-  private Long manager;
+  private String manager;
   /**
    * 财务主管id
    */
@@ -65,7 +66,12 @@ public class ApplicationFormDTO {
    * 财务主管
    */
   @ApiModelProperty(value = "财务主管", required = false, example = "")
-  private Long finance;
+  private String finance;
+  /**
+   * 合计金额
+   */
+  @ApiModelProperty(value = "合计金额", required = false, example = "")
+  private BigDecimal totalAmount;
   /**
    * 提单状态（1.创建保存，2.提交，3.项目经理审核未通过，4.项目经理审核通过，5.财务审核未通过，6.财务审核通过）
    */

@@ -18,10 +18,27 @@ import lombok.NoArgsConstructor;
 public class AccountPageParam {
 
     /**
+     * 主键id
+     */
+    @ApiModelProperty(value = "主键id", required = false, example = "")
+    private Long id;
+    /**
+     * 账号
+     */
+    @ApiModelProperty(value = "账号", required = false, example = "")
+    private String account;
+    /**
+     * 姓名
+     */
+    @ApiModelProperty(value = "姓名", required = false, example = "")
+    private String name;
+
+    /**
      * 角色（1.普通用户，2.项目经理，3.财务管理，4.采购管理，5.仓库管理，6.超级管理）
      */
     @ApiModelProperty(value = "角色（1.普通用户，2.项目经理，3.财务管理，4.采购管理，5.仓库管理，6.超级管理）", required = false, example = "")
     private String role;
+
 
     /**
      * 分页

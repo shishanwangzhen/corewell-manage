@@ -1,12 +1,11 @@
 package com.corewell.corewellmanage.service.impl;
 
-import com.alibaba.fastjson.JSONObject;
 import com.corewell.corewellmanage.dao.ApplicationFormDao;
-import com.corewell.corewellmanage.domain.ApplicationForm;
 import com.corewell.corewellmanage.domain.request.ApplicationFormAddParam;
 import com.corewell.corewellmanage.domain.request.ApplicationFormPageParam;
 import com.corewell.corewellmanage.domain.request.ApplicationFormParam;
 import com.corewell.corewellmanage.domain.request.ApplicationFormUpdateParam;
+import com.corewell.corewellmanage.domain.response.ApplicationFormDTO;
 import com.corewell.corewellmanage.result.ResultMsg;
 import com.corewell.corewellmanage.service.ApplicationFormService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,14 +46,13 @@ public class ApplicationFormServiceImpl implements ApplicationFormService {
 
     @Override
     public ResultMsg getApplicationForm(ApplicationFormParam applicationFormParam) {
-        List<ApplicationForm> list=applicationFormDao.getApplicationForm(applicationFormParam);
+        List<ApplicationFormDTO> list=applicationFormDao.getApplicationForm(applicationFormParam);
         return ResultMsg.success(list);
     }
 
     @Override
-    public List<ApplicationForm> selectApplicationForm(ApplicationFormPageParam applicationFormPageParam) {
-        ApplicationFormParam applicationFormParam= JSONObject.parseObject(applicationFormPageParam.toString(),ApplicationFormParam.class);
-        List<ApplicationForm> list=applicationFormDao.getApplicationForm(applicationFormParam);
+    public List<ApplicationFormDTO> selectApplicationForm(ApplicationFormPageParam applicationFormPageParam) {
+        List<ApplicationFormDTO> list=applicationFormDao.selectApplicationForm(applicationFormPageParam);
         return list;
     }
 }

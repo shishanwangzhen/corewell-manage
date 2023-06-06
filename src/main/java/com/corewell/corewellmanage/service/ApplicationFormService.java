@@ -1,11 +1,11 @@
 package com.corewell.corewellmanage.service;
 
 
-import com.corewell.corewellmanage.domain.ApplicationForm;
 import com.corewell.corewellmanage.domain.request.ApplicationFormAddParam;
 import com.corewell.corewellmanage.domain.request.ApplicationFormPageParam;
 import com.corewell.corewellmanage.domain.request.ApplicationFormParam;
 import com.corewell.corewellmanage.domain.request.ApplicationFormUpdateParam;
+import com.corewell.corewellmanage.domain.response.ApplicationFormDTO;
 import com.corewell.corewellmanage.result.ResultMsg;
 
 import java.util.List;
@@ -56,7 +56,7 @@ public interface ApplicationFormService {
      * @param applicationFormPageParam
      * @return
      */
-    List<ApplicationForm> selectApplicationForm(ApplicationFormPageParam applicationFormPageParam);
+    List<ApplicationFormDTO> selectApplicationForm(ApplicationFormPageParam applicationFormPageParam);
 
 
 

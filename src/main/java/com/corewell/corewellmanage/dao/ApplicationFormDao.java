@@ -1,10 +1,11 @@
 package com.corewell.corewellmanage.dao;
 
 
-import com.corewell.corewellmanage.domain.ApplicationForm;
 import com.corewell.corewellmanage.domain.request.ApplicationFormAddParam;
+import com.corewell.corewellmanage.domain.request.ApplicationFormPageParam;
 import com.corewell.corewellmanage.domain.request.ApplicationFormParam;
 import com.corewell.corewellmanage.domain.request.ApplicationFormUpdateParam;
+import com.corewell.corewellmanage.domain.response.ApplicationFormDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -49,6 +50,14 @@ public interface ApplicationFormDao {
      * @param applicationFormParam
      * @return
      */
-    List<ApplicationForm> getApplicationForm(ApplicationFormParam applicationFormParam);
+    List<ApplicationFormDTO> getApplicationForm(ApplicationFormParam applicationFormParam);
+
+    /**
+     * 获取提单申请列表
+     *
+     * @param applicationFormPageParam
+     * @return
+     */
+    List<ApplicationFormDTO> selectApplicationForm(ApplicationFormPageParam applicationFormPageParam);
 
 }

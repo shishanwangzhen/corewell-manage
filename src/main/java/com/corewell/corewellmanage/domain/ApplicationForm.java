@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -46,6 +47,12 @@ public class ApplicationForm {
    */
   @ApiModelProperty(value = "财务主管id", required = false, example = "")
   private Long financeId;
+  /**
+   * 合计金额
+   */
+  @ApiModelProperty(value = "合计金额", required = false, example = "")
+  private BigDecimal totalAmount;
+
   /**
    * 提单状态（1.创建保存，2.提交，3.项目经理审核未通过，4.项目经理审核通过，5.财务审核未通过，6.财务审核通过）
    */
