@@ -30,12 +30,12 @@ public class MaterialOutboundDTO {
      * 物料名称
      */
     @ApiModelProperty(value = "物料名称", required = false, example = "")
-    private Long materialName;
+    private String materialName;
     /**
      * 物料类型
      */
     @ApiModelProperty(value = "物料类型", required = false, example = "")
-    private Long materialType;
+    private String materialType;
     /**
      * 出库单id
      */
@@ -50,7 +50,7 @@ public class MaterialOutboundDTO {
      * 数量
      */
     @ApiModelProperty(value = "数量", required = false, example = "")
-    private String counts;
+    private Long counts;
     /**
      * 单位
      */

@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -31,17 +32,17 @@ public class MaterialPurchaseAddParam {
    * 需采购数量数量
    */
   @ApiModelProperty(value = "需采购数量数量", required = false, example = "")
-  private String counts;
+  private Long counts;
   /**
    * 已采购数量
    */
   @ApiModelProperty(value = "已采购数量", required = false, example = "")
-  private String completeCounts;
+  private Long completeCounts;
   /**
    * 未已采购数量
    */
   @ApiModelProperty(value = "未已采购数量", required = false, example = "")
-  private String incompleteCounts;
+  private Long incompleteCounts;
   /**
    * 单位
    */
@@ -51,17 +52,17 @@ public class MaterialPurchaseAddParam {
    * 运费
    */
   @ApiModelProperty(value = "运费", required = false, example = "")
-  private String freight;
+  private BigDecimal freight;
   /**
    * 税费
    */
   @ApiModelProperty(value = "税费", required = false, example = "")
-  private String taxation;
+  private BigDecimal taxation;
   /**
    * 发票
    */
   @ApiModelProperty(value = "发票", required = false, example = "")
-  private String invoice;
+  private BigDecimal invoice;
   /**
    * 采购链接
    */
@@ -71,12 +72,12 @@ public class MaterialPurchaseAddParam {
    * 单价
    */
   @ApiModelProperty(value = "单价", required = false, example = "")
-  private String price;
+  private BigDecimal price;
   /**
    * 总价
    */
   @ApiModelProperty(value = "总价", required = false, example = "")
-  private String totalPrice;
+  private BigDecimal totalPrice;
   /**
    * 备注
    */
