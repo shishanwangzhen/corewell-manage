@@ -2,6 +2,7 @@ package com.corewell.corewellmanage.service;
 
 
 import com.corewell.corewellmanage.domain.request.MaterialOutboundAddParam;
+import com.corewell.corewellmanage.domain.request.MaterialOutboundByIds;
 import com.corewell.corewellmanage.domain.request.MaterialOutboundParam;
 import com.corewell.corewellmanage.domain.request.MaterialOutboundUpdateParam;
 import com.corewell.corewellmanage.result.ResultMsg;
@@ -46,5 +47,13 @@ public interface MaterialOutboundService {
      * @return
      */
     ResultMsg getMaterialOutbound(MaterialOutboundParam materialOutboundParam);
+
+    /**
+     * 批量修改物料出库
+     *
+     * @param materialOutboundByIds
+     * @return
+     */
+    ResultMsg updateMaterialOutboundByIds(MaterialOutboundByIds materialOutboundByIds);
 
 }

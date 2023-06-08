@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
 
 /**
  * @author Administrator
@@ -30,7 +29,7 @@ public class MaterialOutboundParam {
    * 出库单id
    */
   @ApiModelProperty(value = "出库单id", required = false, example = "")
-  private Long outboundApplyId;
+  private String outboundApplyId;
   /**
    * 创建者id
    */

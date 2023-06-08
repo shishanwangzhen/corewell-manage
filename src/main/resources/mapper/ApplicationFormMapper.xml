@@ -221,10 +221,10 @@
         where id=#{id}
     </update>
 
-    <update id="deleteApplicationForm" parameterType="Long">
+    <delete id="deleteApplicationForm" parameterType="Long">
         delete
         from application_form
         where id = #{id}
-    </update>
+    </delete>
 </mapper>
 

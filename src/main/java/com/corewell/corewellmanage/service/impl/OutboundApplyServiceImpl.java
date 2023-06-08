@@ -7,6 +7,7 @@ import com.corewell.corewellmanage.domain.request.OutboundApplyParam;
 import com.corewell.corewellmanage.domain.request.OutboundApplyUpdateParam;
 import com.corewell.corewellmanage.result.ResultMsg;
 import com.corewell.corewellmanage.service.OutboundApplyService;
+import com.corewell.corewellmanage.utils.UUIDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +28,14 @@ public class OutboundApplyServiceImpl implements OutboundApplyService {
     @Override
     public ResultMsg addOutboundApply(OutboundApplyAddParam outboundApplyAddParam) {
         outboundApplyAddParam.setCreateTime(new Date());
+        String id=UUIDUtil.get32uuid();
+        outboundApplyAddParam.setId(id);
         int result=outboundApplyDao.addOutboundApply(outboundApplyAddParam);
-        return ResultMsg.success();
+        if (result==1){
+            return ResultMsg.success(id);
+        }else {
+            return ResultMsg.error();
+        }
     }
 
     @Override

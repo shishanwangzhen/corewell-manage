@@ -84,15 +84,16 @@ public class MaterialApplyController {
     }
     @ApiOperation("物料申请批量导入")
     @PostMapping("importMaterialApply")
-    public ResultMsg importMaterialApply(MultipartFile file) throws ParseException {
+    public ResultMsg importMaterialApply(@RequestParam("file") MultipartFile file) throws ParseException {
         List<MaterialApplyTemplate> materialApplyTemplateList = null;
+        System.out.println("importMaterialApply+++++++======"+file.toString());
         // 1.excel同步读取数据
         try {
             materialApplyTemplateList = EasyExcel.read(new BufferedInputStream(file.getInputStream())).head(MaterialApplyTemplate.class).sheet().doReadSync();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        System.out.println(materialApplyTemplateList.toString());
         // 5.入库操作
         for (int i = 0; i < materialApplyTemplateList.size(); i++) {
             MaterialApplyTemplate materialApplyTemplate = materialApplyTemplateList.get(i);

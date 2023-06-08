@@ -16,7 +16,11 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OutboundApplyAddParam {
-
+  /**
+   * 主键id
+   */
+  @ApiModelProperty(value = "主键id", required = false, example = "")
+  private String id;
   /**
    * 审核人id
    */

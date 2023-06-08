@@ -20,7 +20,7 @@ public class OutboundApply {
    * 主键id
    */
   @ApiModelProperty(value = "主键id", required = false, example = "")
-  private Long id;
+  private String id;
   /**
    * 审核人id
    */

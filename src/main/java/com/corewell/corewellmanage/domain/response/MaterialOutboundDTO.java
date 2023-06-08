@@ -40,7 +40,7 @@ public class MaterialOutboundDTO {
      * 出库单id
      */
     @ApiModelProperty(value = "出库单id", required = false, example = "")
-    private Long outboundApplyId;
+    private String outboundApplyId;
     /**
      * 规格参数
      */

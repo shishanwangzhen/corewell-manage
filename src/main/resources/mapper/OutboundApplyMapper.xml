@@ -28,6 +28,9 @@
     <insert id="addOutboundApply" parameterType="OutboundApplyAddParam">
         insert into outbound_apply
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=null and id!=''">
+                id,
+            </if>
             <if test="reviewerId!=null and reviewerId!=''">
                 reviewer_id,
             </if>
@@ -48,6 +51,9 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id!=null and id!=''">
+                #{id},
+            </if>
             <if test="reviewerId!=null and reviewerId!=''">
                 #{reviewerId},
             </if>
