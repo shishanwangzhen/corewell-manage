@@ -44,6 +44,11 @@ public class ApplicationFormAddParam {
   @ApiModelProperty(value = "财务主管id", required = false, example = "")
   private Long financeId;
   /**
+   * 采购主管id
+   */
+  @ApiModelProperty(value = "采购主管id", required = false, example = "")
+  private Long buyerId;
+  /**
    * 合计金额
    */
   @ApiModelProperty(value = "合计金额", required = false, example = "")

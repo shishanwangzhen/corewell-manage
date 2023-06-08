@@ -68,6 +68,16 @@ public class ApplicationFormDTO {
   @ApiModelProperty(value = "财务主管", required = false, example = "")
   private String finance;
   /**
+   * 采购主管id
+   */
+  @ApiModelProperty(value = "采购主管id", required = false, example = "")
+  private Long buyerId;
+  /**
+   * 采购主管
+   */
+  @ApiModelProperty(value = "采购主管", required = false, example = "")
+  private String buyer;
+  /**
    * 合计金额
    */
   @ApiModelProperty(value = "合计金额", required = false, example = "")

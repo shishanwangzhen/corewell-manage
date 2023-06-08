@@ -37,6 +37,11 @@ public class ApplicationFormPageParam {
   @ApiModelProperty(value = "财务主管id", required = false, example = "")
   private Long financeId;
   /**
+   * 采购主管id
+   */
+  @ApiModelProperty(value = "采购主管id", required = false, example = "")
+  private Long buyerId;
+  /**
    * 提单状态（1.创建保存，2.提交，3.项目经理审核未通过，4.项目经理审核通过，5.财务审核未通过，6.财务审核通过）
    */
   @ApiModelProperty(value = "提单状态（1.创建保存，2.提交，3.项目经理审核未通过，4.项目经理审核通过，5.财务审核未通过，6.财务审核通过）", required = false, example = "")
