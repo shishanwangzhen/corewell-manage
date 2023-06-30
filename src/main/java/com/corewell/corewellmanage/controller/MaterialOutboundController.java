@@ -2,6 +2,7 @@ package com.corewell.corewellmanage.controller;
 
 import com.corewell.corewellmanage.domain.MaterialOutbound;
 import com.corewell.corewellmanage.domain.request.MaterialOutboundAddParam;
+import com.corewell.corewellmanage.domain.request.MaterialOutboundByIds;
 import com.corewell.corewellmanage.domain.request.MaterialOutboundParam;
 import com.corewell.corewellmanage.domain.request.MaterialOutboundUpdateParam;
 import com.corewell.corewellmanage.result.ResultMsg;
@@ -10,10 +11,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 
 /**
  * Created with IntelliJ IDEA.
@@ -61,6 +60,12 @@ public class MaterialOutboundController {
         return resultMsg;
     }
 
+    @ApiOperation(value = "批量修改物料出库", response = MaterialOutbound.class)
+    @PostMapping("updateMaterialOutboundByIds")
+    public ResultMsg updateMaterialOutboundByIds(@RequestBody MaterialOutboundByIds materialOutboundByIds) {
+        ResultMsg resultMsg = materialOutboundService.updateMaterialOutboundByIds(materialOutboundByIds);
+        return resultMsg;
+    }
 
 }
 

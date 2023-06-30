@@ -114,5 +114,9 @@
         from material_outbound
         where id = #{id}
     </update>
+<update id="updateMaterialOutboundByIds" parameterType="MaterialOutboundByIds">
+    update material_outbound
+</update>
+
 </mapper>
 

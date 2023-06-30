@@ -3,6 +3,7 @@ package com.corewell.corewellmanage.dao;
 
 import com.corewell.corewellmanage.domain.MaterialOutbound;
 import com.corewell.corewellmanage.domain.request.MaterialOutboundAddParam;
+import com.corewell.corewellmanage.domain.request.MaterialOutboundByIds;
 import com.corewell.corewellmanage.domain.request.MaterialOutboundParam;
 import com.corewell.corewellmanage.domain.request.MaterialOutboundUpdateParam;
 import org.apache.ibatis.annotations.Mapper;
@@ -50,5 +51,13 @@ public interface MaterialOutboundDao {
      * @return
      */
     List<MaterialOutbound> getMaterialOutbound(MaterialOutboundParam materialOutboundParam);
+
+    /**
+     * 批量修改物料出库
+     *
+     * @param materialOutboundByIds
+     * @return
+     */
+    int updateMaterialOutboundByIds(MaterialOutboundByIds materialOutboundByIds);
 
 }

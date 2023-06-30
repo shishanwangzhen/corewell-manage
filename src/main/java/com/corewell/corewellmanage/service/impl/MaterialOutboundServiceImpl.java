@@ -3,6 +3,7 @@ package com.corewell.corewellmanage.service.impl;
 import com.corewell.corewellmanage.dao.MaterialOutboundDao;
 import com.corewell.corewellmanage.domain.MaterialOutbound;
 import com.corewell.corewellmanage.domain.request.MaterialOutboundAddParam;
+import com.corewell.corewellmanage.domain.request.MaterialOutboundByIds;
 import com.corewell.corewellmanage.domain.request.MaterialOutboundParam;
 import com.corewell.corewellmanage.domain.request.MaterialOutboundUpdateParam;
 import com.corewell.corewellmanage.result.ResultMsg;
@@ -47,5 +48,12 @@ public class MaterialOutboundServiceImpl implements MaterialOutboundService {
     public ResultMsg getMaterialOutbound(MaterialOutboundParam materialOutboundParam) {
         List<MaterialOutbound> list=materialOutboundDao.getMaterialOutbound(materialOutboundParam);
         return ResultMsg.success(list);
+    }
+
+    @Override
+    public ResultMsg updateMaterialOutboundByIds(MaterialOutboundByIds materialOutboundByIds) {
+
+        int result=materialOutboundDao.updateMaterialOutboundByIds(materialOutboundByIds);
+        return ResultMsg.success();
     }
 }
